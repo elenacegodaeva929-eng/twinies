@@ -11,18 +11,31 @@
      3. Если внутри текста нужны кавычки — ставьте «ёлочки» или ' ,
         но не " — она закроет строку раньше времени.
 
-   Апостроф в английском тексте (don't, we're) писать можно.
+   Картинки лежат в корне репозитория, рядом с index.html.
+   Поэтому путь — просто имя файла: "kseniia.jpg", без папок.
+
    После правки: сохранить файл и залить на GitHub поверх старого.
    ===================================================================== */
 
 const CONTENT = {
 
-  /* ======================= КОНТАКТЫ И ФОРМЫ =======================
+  /* ================== КАРТИНКИ ГЛАВНОГО ЭКРАНА ================== */
+
+  heroLogo:  "",                  /* доп. логотип над заголовком — обычно не нужен,
+                                     настоящий логотип стоит в меню            */
+  heroClown: "logo-hero.png",     /* иллюстрация клоуна                        */
+
+  /* Показывать ли большую надпись TWINIES градиентом над иллюстрацией.
+     Сейчас выключена: название уже есть на самой иллюстрации.
+     Поставьте true, если хотите вернуть её.                                   */
+  showTitle: false,
+
+
+  /* ====================== КОНТАКТЫ И ФОРМЫ ======================
      createForm — ссылка на гугл-форму для заявок в студию
      joinForm   — ссылка на гугл-форму «стать частью команды»
-     email      — почта, она же запасной канал связи
-     Пока ссылка пустая — на странице показывается форма, которая
-     собирает ответы и открывает почту с готовым письмом.            */
+     Пока ссылка пустая — показывается форма, которая собирает
+     ответы и открывает почту с готовым письмом.                    */
 
   createForm: "",
   joinForm: "",
@@ -41,7 +54,7 @@ const CONTENT = {
 
 
   /* ========================== ФАУНДЕРЫ ==========================
-     photo — файл в папке img/, например "img/kseniia.jpg"          */
+     photo — имя файла, загруженного в репозиторий: "kseniia.jpg"   */
 
   founders: [
     {
@@ -81,35 +94,35 @@ const CONTENT = {
 
 
   /* ======================= ПОДРАЗДЕЛЕНИЯ =======================
-     На главной показываются только логотипы.
-     Описание открывается на странице подразделения.                */
+     На главной — только логотип и название.
+     Описание и состав открываются при клике.                       */
 
   divisions: [
     {
       id: "eye",
       name: "Eye",
-      logo: "img/eye.png",
+      logo: "eye.png",
       roles: "Directors, Cinematographers & Editors",
       desc: "We bring visions to life, from the first wild idea to the final frame. We dream up, shoot, and edit films, commercials, music videos, and anything else meant to be seen."
     },
     {
       id: "hand",
       name: "Hand",
-      logo: "img/hand.png",
+      logo: "hand.png",
       roles: "Design, Art & AI",
       desc: "We turn imagination into something you can see and touch. We build visual identities, create bold designs, graphics, illustrations, and entire digital worlds. No rules and no limits."
     },
     {
       id: "mouth",
       name: "Mouth",
-      logo: "img/mouth.png",
+      logo: "mouth.png",
       roles: "Producers, Marketing & Mediation",
       desc: "We make things happen. We turn impossible ideas into real projects, bring the right people together, break down barriers, build strategies, and lead productions from chaos to creation."
     },
     {
       id: "ear",
       name: "Ear",
-      logo: "img/ear.png",
+      logo: "ear.png",
       roles: "Musicians, Sound Designers & Audio Engineers",
       desc: "We give ideas a voice. We compose original music, design soundscapes, and shape the sound of films, commercials, and digital experiences. From the first note to the final echo."
     }
@@ -118,8 +131,9 @@ const CONTENT = {
 
   /* ========================= СОТРУДНИКИ =========================
      Ключи eye / hand / mouth / ear — те же id, что у подразделений.
-     Чтобы добавить человека — скопируйте строку { … } целиком
-     и впишите своё. Чтобы убрать — удалите её вместе со скобками.
+     Чтобы добавить человека — скопировать строку { … } целиком,
+     вставить ниже и переписать. Чтобы убрать — удалить её
+     вместе с фигурными скобками и запятой.
 
      links — кнопки под карточкой: ["Подпись", "ссылка"]            */
 
@@ -147,7 +161,7 @@ const CONTENT = {
 
   /* ====================== ФИЛЬМЫ СТУДИИ ======================
      Собственные проекты Твинис. Афиша + описание, трейлер позже.
-     poster  — файл в img/, например "img/film-poster.jpg"
+     poster  — имя файла: "film-poster.jpg"
      trailer — ССЫЛКА-EMBED, именно в таком виде:
                  YouTube   https://www.youtube.com/embed/КОД
                  Vimeo     https://player.vimeo.com/video/НОМЕР
@@ -167,7 +181,7 @@ const CONTENT = {
 
   /* ======================== ЛЕНТА РАБОТ ========================
      Работы ребят из команды. Только картинки, без описаний.
-     img — файл в папке img/. Клик открывает картинку крупно.
+     img — имя файла. Клик открывает картинку крупно.
      Добавлять можно сколько угодно — лента сама разложится.        */
 
   works: [

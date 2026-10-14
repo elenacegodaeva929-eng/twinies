@@ -1,5 +1,5 @@
 /* =====================================================================
-   TWINIES — логика сайта: переходы между экранами, карточки, окна, формы.
+   TWINIES — логика сайта: раскрытие карточек, окна, формы.
    Весь контент берётся из content.js. Здесь править ничего не нужно.
    ===================================================================== */
 
@@ -16,125 +16,126 @@ function esc(s){
   });
 }
 function pic(src, cls, alt, phText){
-  return '<div class="' + cls + '">' + (src
-    ? '<img src="' + esc(src) + '" alt="' + esc(alt || "") + '" loading="lazy">'
-    : '<span class="ph"><span>' + (phText || "photo") + '</span></span>') + '</div>';
+  return src
+    ? '<img class="' + cls + '" src="' + esc(src) + '" alt="' + esc(alt || "") + '" loading="lazy">'
+    : '<div class="slot ' + cls + '">' + (phText || "photo") + '</div>';
 }
 
-/* ----------------------------- спираль ----------------------------- */
-(function spiral(){
-  var cv = $("spiral"); if(!cv) return;
-  function draw(){
-    var size = Math.min(1500, Math.round(Math.min(window.innerWidth, window.innerHeight) * 1.9));
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    cv.width = size * dpr; cv.height = size * dpr;
-    var x = cv.getContext("2d");
-    x.scale(dpr, dpr);
-    var c = size / 2, turns = 5.5, steps = 1100, max = c * 0.94;
-    var grad = x.createLinearGradient(0, 0, size, size);
-    grad.addColorStop(0, "#7CFF2E"); grad.addColorStop(.5, "#4FE8FF"); grad.addColorStop(1, "#B14BFF");
-    x.strokeStyle = grad; x.lineWidth = Math.max(1.4, size / 620); x.lineCap = "round";
-    x.beginPath();
-    for(var i = 0; i <= steps; i++){
-      var t = turns * 2 * Math.PI * i / steps;
-      var r = 6 + (max - 6) * (t / (turns * 2 * Math.PI));
-      var px = c + r * Math.cos(t), py = c + r * Math.sin(t);
-      if(i === 0) x.moveTo(px, py); else x.lineTo(px, py);
-    }
-    x.stroke();
+/* ------------------------------ прожектор ------------------------------ */
+(function(){
+  var spot = $("spot"); if(!spot) return;
+  if(!window.matchMedia || !window.matchMedia("(hover:hover)").matches) return;
+
+  var tx = window.innerWidth / 2, ty = window.innerHeight * 0.4;
+  var cx = tx, cy = ty, raf = null;
+
+  function frame(){
+    cx += (tx - cx) * 0.16;
+    cy += (ty - cy) * 0.16;
+    spot.style.setProperty("--mx", cx.toFixed(1) + "px");
+    spot.style.setProperty("--my", cy.toFixed(1) + "px");
+    raf = (Math.abs(tx - cx) > 0.4 || Math.abs(ty - cy) > 0.4)
+      ? requestAnimationFrame(frame) : null;
   }
-  draw();
-  var t; window.addEventListener("resize", function(){ clearTimeout(t); t = setTimeout(draw, 220); });
+  function move(e){
+    tx = e.clientX; ty = e.clientY;
+    if(!raf) raf = requestAnimationFrame(frame);
+  }
+  window.addEventListener("pointermove", move, {passive:true});
+  window.addEventListener("pointerdown", move, {passive:true});
+
+  /* пятно гаснет, когда курсор ушёл со страницы */
+  document.addEventListener("mouseleave", function(){ spot.style.opacity = "0"; });
+  document.addEventListener("mouseenter", function(){ spot.style.opacity = ""; });
 })();
 
-/* ------------------------- переходы по экранам ------------------------- */
-var VIEWS = ["home", "founder", "division", "create", "join"];
-var SECTION_OF = { founders: "founders", divisions: "divisions", projects: "projects" };
-
-function show(view){
+/* ------------------------- переключение страниц ------------------------- */
+var VIEWS = ["home", "create", "join"];
+function go(view){
   VIEWS.forEach(function(v){ $("view-" + v).hidden = (v !== view); });
   document.querySelectorAll(".nav nav button").forEach(function(b){
     b.setAttribute("aria-current", String(b.dataset.go === view));
   });
+  window.scrollTo(0, 0);
 }
-function go(view){ show(view); window.scrollTo(0, 0); }
-
-function toSection(id){
-  show("home");
-  requestAnimationFrame(function(){
-    var el = $(SECTION_OF[id] || id);
-    if(el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  });
-}
-
 document.addEventListener("click", function(e){
-  var g = e.target.closest("[data-go]");     if(g){ go(g.dataset.go); return; }
-  var n = e.target.closest("[data-nav]");    if(n){ toSection(n.dataset.nav); return; }
+  var g = e.target.closest("[data-go]");
+  if(g){ go(g.dataset.go); return; }
+  var s = e.target.closest("[data-scroll]");
+  if(s){
+    go("home");
+    setTimeout(function(){ $(s.dataset.scroll).scrollIntoView({behavior:"smooth", block:"start"}); }, 40);
+  }
 });
 
-/* --------------------------- главный экран --------------------------- */
+/* ----------------------------- главный экран ----------------------------- */
 $("tagline").textContent = C.tagline || "";
-$("heroText").innerHTML =
-  '<p class="lede">' + esc(C.intro[0]) + '</p>' +
-  '<div class="hero-cols">' + C.intro.slice(1).map(function(p){
-    return '<p>' + esc(p) + '</p>';
-  }).join("") + '</div>';
+if(!C.showTitle) document.querySelector("h1.title").classList.add("sr-only");
+$("heroLogo").innerHTML  = C.heroLogo
+  ? '<img class="hero-logo" src="' + esc(C.heroLogo) + '" alt="Twinies">'
+  : "";
+$("heroClown").innerHTML = C.heroClown
+  ? '<img class="clown" src="' + esc(C.heroClown) + '" alt="">'
+  : '<div class="slot clown">clown illustration</div>';
+$("heroText").innerHTML  = C.intro.map(function(p){ return '<p class="lede">' + esc(p) + '</p>'; }).join("");
+$("footMail").innerHTML  = '<a class="mail" href="mailto:' + esc(C.email) + '">' + esc(C.email) + '</a>';
 
-$("footMail").innerHTML = '<a class="mail" href="mailto:' + esc(C.email) + '">' + esc(C.email) + '</a>';
-$("joinTeaser").innerHTML = C.joinIntro.slice(0, 2).map(function(p){ return '<p>' + esc(p) + '</p>'; }).join("");
+/* ------------------------------- фаундеры ------------------------------- */
+var fGrid = $("founderGrid"), fBox = $("founderDetail"), openFounder = null;
 
-/* ------------------------------ фаундеры ------------------------------ */
-$("founderGrid").innerHTML = C.founders.map(function(f){
-  return '<button class="founder" data-founder="' + esc(f.id) + '">' +
-    pic(f.photo, "portrait", f.name) +
+fGrid.innerHTML = C.founders.map(function(f){
+  return '<button class="owner" data-founder="' + esc(f.id) + '">' +
+    pic(f.photo, "photo", f.name) +
     '<div><h3>' + esc(f.name) + '</h3><div class="role">' + esc(f.short) + '</div></div>' +
     '<span class="more">About me →</span></button>';
 }).join("");
 
-function openFounder(id){
+fGrid.addEventListener("click", function(e){
+  var b = e.target.closest("[data-founder]"); if(!b) return;
+  var id = b.dataset.founder;
+  if(openFounder === id){ fBox.innerHTML = ""; openFounder = null; return; }
   var f = C.founders.filter(function(x){ return x.id === id; })[0];
-  if(!f) return;
-  $("founderBody").innerHTML = '<div class="founder-page">' +
-    pic(f.photo, "portrait", f.name) +
-    '<div class="sheet">' +
-      '<div><h2>' + esc(f.name) + '</h2><div class="title">' + esc(f.title) + '</div></div>' +
-      '<div><p class="label" style="margin-bottom:14px">Selected achievements</p>' +
-        '<ul class="ach">' + f.achievements.map(function(a){ return '<li>' + esc(a) + '</li>'; }).join("") + '</ul></div>' +
-      '<div><p class="label" style="margin-bottom:14px">About me</p>' +
-        '<p class="about">' + esc(f.about) + '</p></div>' +
-      '<blockquote>' + esc(f.quote) + '<cite>' + esc(f.cite) + '</cite></blockquote>' +
-      '<div><button class="btn" type="button" data-go="create">Create art</button></div>' +
-    '</div></div>';
-  go("founder");
-}
-$("founderGrid").addEventListener("click", function(e){
-  var b = e.target.closest("[data-founder]");
-  if(b) openFounder(b.dataset.founder);
+  openFounder = id;
+  fBox.innerHTML = '<div class="bio">' +
+    '<div><h3>' + esc(f.name) + '</h3><div class="role">' + esc(f.title) + '</div></div>' +
+    '<div><p class="eyebrow mb">Selected achievements</p>' +
+      '<ul class="ach">' + f.achievements.map(function(a){ return '<li>' + esc(a) + '</li>'; }).join("") + '</ul></div>' +
+    '<div><p class="eyebrow mb">About me</p><p class="about">' + esc(f.about) + '</p></div>' +
+    '<blockquote>' + esc(f.quote) + '<cite>' + esc(f.cite) + '</cite></blockquote>' +
+    '<div><button class="btn" type="button" data-go="create">Create art</button></div>' +
+    '<button class="closer" type="button">Close</button></div>';
+  fBox.scrollIntoView({behavior:"smooth", block:"nearest"});
 });
 
-/* ---------------------------- подразделения ---------------------------- */
-function sigil(d, extra){
-  return d.logo ? '<img class="sigil ' + (extra || "") + '" src="' + esc(d.logo) + '" alt="' + esc(d.name) + '">'
-                : '<span class="ph">logo</span>';
+fBox.addEventListener("click", function(e){
+  if(e.target.classList.contains("closer")){ fBox.innerHTML = ""; openFounder = null; }
+});
+
+/* ------------------------------ подразделения ------------------------------ */
+function sigil(d){
+  return d.logo ? '<img class="sigil" src="' + esc(d.logo) + '" alt="' + esc(d.name) + '">'
+                : '<div class="slot sigil-slot">logo</div>';
 }
 
-$("divGrid").innerHTML = C.divisions.map(function(d){
-  return '<button class="div-card" data-division="' + esc(d.id) + '">' +
+var dGrid = $("divGrid"), dPanel = $("divPanel"), openDiv = null;
+
+/* на главной — только логотип и название, без описаний */
+dGrid.innerHTML = C.divisions.map(function(d){
+  return '<button class="div-card" data-div="' + esc(d.id) + '" aria-expanded="false">' +
     '<span class="sigil-box">' + sigil(d) + '</span>' +
     '<h3>' + esc(d.name) + '</h3></button>';
 }).join("");
 
-function openDivision(id){
+function renderDivision(id){
   var d = C.divisions.filter(function(x){ return x.id === id; })[0];
-  if(!d) return;
   var people = (C.team && C.team[id]) || [];
 
-  $("divisionBody").innerHTML = '<div class="division-page">' +
-    '<div class="dhead">' + sigil(d) +
-      '<div><h2>' + esc(d.name) + '</h2>' +
+  dPanel.innerHTML = '<div class="panel">' +
+    '<div class="top">' + sigil(d) +
+      '<div><h3>' + esc(d.name) + '</h3>' +
       '<div class="roles">' + esc(d.roles) + '</div>' +
       '<p class="desc">' + esc(d.desc) + '</p></div></div>' +
-    '<p class="label" style="margin-top:34px">' + people.length + ' twinies</p>' +
+    '<p class="eyebrow mb">' + people.length + ' twinies</p>' +
     '<div class="people">' + people.map(function(p, i){
       var av = p.photo ? '<img class="av" src="' + esc(p.photo) + '" alt="" loading="lazy">'
                        : '<span class="av"></span>';
@@ -142,9 +143,10 @@ function openDivision(id){
         '<span class="nm">' + esc(p.name) + '</span>' +
         '<span class="rl">' + esc(p.role) + '</span></button>';
     }).join("") + '</div>' +
-    '<div id="personCard"></div></div>';
+    '<div id="personCard"></div>' +
+    '<button class="closer" type="button" data-close-div>Close division</button></div>';
 
-  var grid = $("divisionBody").querySelector(".people");
+  var grid = dPanel.querySelector(".people");
   grid.addEventListener("click", function(e){
     var b = e.target.closest("[data-p]"); if(!b) return;
     var p = people[+b.dataset.p];
@@ -156,46 +158,55 @@ function openDivision(id){
     var links = (p.links || []).map(function(l){
       return '<a class="chip" href="' + esc(l[1]) + '" target="_blank" rel="noopener">' + esc(l[0]) + '</a>';
     }).join(" ");
-    card.innerHTML = '<div class="person-card">' + pic(p.photo, "portrait", p.name) +
-      '<div style="min-width:0;display:grid;gap:12px;align-content:start">' +
+    card.innerHTML = '<div class="person-card">' + pic(p.photo, "photo", p.name) +
+      '<div style="min-width:0;display:grid;gap:10px;align-content:start">' +
       '<div><h4>' + esc(p.name) + '</h4>' +
-      '<div class="rl" style="color:var(--green);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:11.5px;margin-top:6px">' +
+      '<div class="rl" style="color:var(--green);font-weight:700;margin-top:4px">' +
       esc(p.role) + ' · ' + esc(d.name) + '</div></div>' +
-      '<p style="color:var(--mute);font-size:14.5px">' + esc(p.bio || "Short bio goes here.") + '</p>' +
+      '<p style="color:var(--mute);font-size:14px">' + esc(p.bio || "Short bio goes here.") + '</p>' +
       (links ? '<div class="chips">' + links + '</div>' : "") +
       '</div></div>';
-    card.scrollIntoView({ behavior: "smooth", block: "nearest" });
   });
 
-  go("division");
+  dPanel.querySelector("[data-close-div]").addEventListener("click", function(){
+    dPanel.innerHTML = ""; openDiv = null;
+    document.querySelectorAll(".div-card").forEach(function(c){ c.setAttribute("aria-expanded", "false"); });
+  });
 }
-$("divGrid").addEventListener("click", function(e){
-  var b = e.target.closest("[data-division]");
-  if(b) openDivision(b.dataset.division);
+
+dGrid.addEventListener("click", function(e){
+  var b = e.target.closest("[data-div]"); if(!b) return;
+  var id = b.dataset.div;
+  document.querySelectorAll(".div-card").forEach(function(c){ c.setAttribute("aria-expanded", "false"); });
+  if(openDiv === id){ dPanel.innerHTML = ""; openDiv = null; return; }
+  openDiv = id;
+  b.setAttribute("aria-expanded", "true");
+  renderDivision(id);
+  setTimeout(function(){ dPanel.scrollIntoView({behavior:"smooth", block:"nearest"}); }, 60);
 });
 
-/* -------------------------- окна: фильм и картинка -------------------------- */
-var overlay = $("overlay"), lastFocus = null;
+/* ------------------------------ окна ------------------------------ */
+var modalRoot = $("modalRoot"), lastFocus = null;
 
-function closeOverlay(){
-  overlay.innerHTML = "";
+function closeModal(){
+  modalRoot.innerHTML = "";
   document.body.style.overflow = "";
   if(lastFocus) lastFocus.focus();
 }
-function openOverlay(inner, label, cls){
-  overlay.innerHTML = '<div class="scrim ' + (cls || "") + '" role="dialog" aria-modal="true" aria-label="' + esc(label) + '">' +
+function openModal(inner, label, cls){
+  modalRoot.innerHTML = '<div class="scrim ' + (cls || "") + '" role="dialog" aria-modal="true" aria-label="' + esc(label) + '">' +
     '<button class="x" type="button" aria-label="Close">✕</button>' + inner + '</div>';
   document.body.style.overflow = "hidden";
-  overlay.querySelector(".x").focus();
-  overlay.querySelector(".scrim").addEventListener("click", function(ev){
-    if(ev.target.classList.contains("scrim") || ev.target.closest(".x")) closeOverlay();
+  modalRoot.querySelector(".x").focus();
+  modalRoot.querySelector(".scrim").addEventListener("click", function(ev){
+    if(ev.target.classList.contains("scrim") || ev.target.closest(".x")) closeModal();
   });
 }
 document.addEventListener("keydown", function(e){
-  if(e.key === "Escape" && overlay.innerHTML) closeOverlay();
+  if(e.key === "Escape" && modalRoot.innerHTML) closeModal();
 });
 
-/* -------------------------------- фильмы -------------------------------- */
+/* ------------------------------ фильмы ------------------------------ */
 var filmGrid = $("filmGrid");
 if(C.films.length === 1) filmGrid.classList.add("single");
 
@@ -206,9 +217,8 @@ filmGrid.innerHTML = C.films.map(function(f, i){
     : "";
   return '<button class="film" data-film="' + i + '">' +
     pic(f.poster, "poster", f.title, "poster") +
-    '<span class="film-meta"><span class="meta">' + meta + '</span>' +
-    '<h4>' + esc(f.title) + '</h4>' + teaser + '</span>' +
-    '</button>';
+    '<span class="film-meta"><span class="kind">' + meta + '</span>' +
+    '<h4>' + esc(f.title) + '</h4>' + teaser + '</span></button>';
 }).join("");
 
 filmGrid.addEventListener("click", function(e){
@@ -217,19 +227,17 @@ filmGrid.addEventListener("click", function(e){
   var f = C.films[+b.dataset.film];
   var reel = f.trailer
     ? '<iframe src="' + esc(f.trailer) + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="' + esc(f.title) + '"></iframe>'
-    : '<div class="reel">trailer coming soon</div>';
-  openOverlay('<div class="modal">' + reel + '<div class="body">' +
-    '<div class="meta" style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--green);font-weight:700">' +
-    esc(f.kind) + (f.year ? ' · ' + esc(f.year) : "") + '</div>' +
-    '<h3>' + esc(f.title) + '</h3>' +
-    '<p>' + esc(f.desc) + '</p></div></div>', f.title);
+    : '<div class="slot reel">trailer coming soon</div>';
+  openModal('<div class="modal">' + reel + '<div class="body">' +
+    '<span class="kind">' + esc(f.kind) + (f.year ? ' · ' + esc(f.year) : "") + '</span>' +
+    '<h3>' + esc(f.title) + '</h3><p>' + esc(f.desc) + '</p></div></div>', f.title);
 });
 
-/* ------------------------------ лента работ ------------------------------ */
+/* ---------------------------- лента работ ---------------------------- */
 $("workGrid").innerHTML = C.works.map(function(w, i){
   return '<button class="work" data-work="' + i + '">' + (w.img
     ? '<img src="' + esc(w.img) + '" alt="' + esc(w.alt || "") + '" loading="lazy">'
-    : '<span class="ph">work</span>') + '</button>';
+    : '<span class="work-ph">work</span>') + '</button>';
 }).join("");
 
 $("workGrid").addEventListener("click", function(e){
@@ -237,20 +245,20 @@ $("workGrid").addEventListener("click", function(e){
   var w = C.works[+b.dataset.work];
   if(!w.img) return;
   lastFocus = b;
-  openOverlay('<img src="' + esc(w.img) + '" alt="' + esc(w.alt || "") + '">', w.alt || "Work", "lightbox");
+  openModal('<img src="' + esc(w.img) + '" alt="' + esc(w.alt || "") + '">', w.alt || "Work", "lightbox");
 });
 
-/* ------------------------------ страницы форм ------------------------------ */
+/* ------------------------------ формы ------------------------------ */
 $("createIntro").innerHTML = C.createIntro.map(function(p){ return '<p>' + esc(p) + '</p>'; }).join("");
 $("joinIntro").innerHTML   = C.joinIntro.map(function(p){ return '<p>' + esc(p) + '</p>'; }).join("");
 
-function linkForm(url, buttonText){
+function linkForm(url){
   return '<div class="form">' +
-    '<div><a class="btn" href="' + esc(url) + '" target="_blank" rel="noopener">' + buttonText + '</a></div>' +
+    '<div><a class="btn" href="' + esc(url) + '" target="_blank" rel="noopener">Open the form</a></div>' +
     '<p class="note">We read everything and answer from ' + esc(C.email) + ' within three working days.</p></div>';
 }
 
-$("createBody").innerHTML = C.createForm ? linkForm(C.createForm, "Open the form") :
+$("createBody").innerHTML = C.createForm ? linkForm(C.createForm) :
   '<form class="form" id="formCreate">' +
   '<div class="field"><label for="c1">Main request *</label><textarea id="c1" required placeholder="What should we make? Format, idea, references…"></textarea></div>' +
   '<div class="field"><label for="c2">Budget *</label><input id="c2" required placeholder="A range is fine"></div>' +
@@ -261,7 +269,7 @@ $("createBody").innerHTML = C.createForm ? linkForm(C.createForm, "Open the form
   '<p class="note">Your mail app opens with the brief ready for ' + esc(C.email) + '.</p></form>' +
   '<div id="okCreate"></div>';
 
-$("joinBody").innerHTML = C.joinForm ? linkForm(C.joinForm, "Open the form") :
+$("joinBody").innerHTML = C.joinForm ? linkForm(C.joinForm) :
   '<form class="form" id="formJoin">' +
   '<div class="field"><label for="j1">What you do *</label><select id="j1" required>' +
   '<option value="">Choose a division</option>' +
