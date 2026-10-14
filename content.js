@@ -2,173 +2,198 @@
    КОНТЕНТ САЙТА TWINIES
 
    Это единственный файл, который нужно править, чтобы поменять
-   владельцев, подразделения, сотрудников, проекты и контакты.
+   фаундеров, подразделения, сотрудников, фильмы, ленту работ и контакты.
    Дизайн и вёрстка живут в других файлах — их трогать не надо.
 
    ТРИ ПРАВИЛА, ЧТОБЫ НИЧЕГО НЕ СЛОМАТЬ:
-     1. Текст всегда внутри кавычек:  name: "Ksenia Klever"
+     1. Текст всегда внутри кавычек:  name: "Kseniia Klever"
      2. После каждой строки — запятая, кроме самой последней в блоке.
      3. Если внутри текста нужны кавычки — ставьте «ёлочки» или ' ,
         но не " — она закроет строку раньше времени.
 
-   Апостроф в английском тексте (don't, we're) писать можно — всё в
-   двойных кавычках, он их не ломает.
-
-   После правки: сохранить файл и залить на хостинг поверх старого.
+   Апостроф в английском тексте (don't, we're) писать можно.
+   После правки: сохранить файл и залить на GitHub поверх старого.
    ===================================================================== */
 
 const CONTENT = {
 
-  /* ================== КАРТИНКИ ГЛАВНОГО ЭКРАНА ==================
-     Положите файлы в папку img/ и впишите имя.
-     Пока пусто — на их месте пунктирные рамки.                      */
-
-  heroLogo:  "",            /* например: "img/logo.svg"  */
-  heroClown: "",            /* например: "img/clown.png" */
-
-
-  /* ====================== КОНТАКТЫ И ФОРМЫ ======================
-     createForm — ссылка на гугл-форму для заявок в студию.
-                  Пока пусто, кнопка «Create» ведёт на страницу с
-                  формой-заглушкой, которая никуда не отправляет.
-     email      — почта, на которую пишут желающие в команду.         */
+  /* ======================= КОНТАКТЫ И ФОРМЫ =======================
+     createForm — ссылка на гугл-форму для заявок в студию
+     joinForm   — ссылка на гугл-форму «стать частью команды»
+     email      — почта, она же запасной канал связи
+     Пока ссылка пустая — на странице показывается форма, которая
+     собирает ответы и открывает почту с готовым письмом.            */
 
   createForm: "",
+  joinForm: "",
   email: "hello@twinies.studio",
 
 
-  /* ========================= ВЛАДЕЛЬЦЫ =========================
-     photo  — файл в папке img/, например "img/ksenia.jpg"
-     tags   — достижения, короткими фразами
-     bio    — текст от первого лица
-     quote  — цитата, cite — чья                                      */
+  /* ====================== ГЛАВНЫЙ ЭКРАН ====================== */
 
-  owners: [
+  tagline: "Clown production studio",
+
+  intro: [
+    "Twinies is a clown production studio bringing artists from around the world together to create independent art in all its forms. Our mission is to make art accessible to everyone, regardless of their background, status, or experience.",
+    "At Twinies, we're all twins. No two of us are alike, but we share a love for creating and a taste for the unconventional. Our twinies are always ready to jump into projects of any scale or complexity. Everyone on our team has the freedom to explore their own interests and grow in whatever direction they choose — and that's what makes each twinie unique.",
+    "We bring the people, skills, and ideas that other projects need to come to life, while making plenty of our own. Rebellion against the system, creative freedom, unconventional thinking, and staying true to ourselves — that's what Twinies is all about."
+  ],
+
+
+  /* ========================== ФАУНДЕРЫ ==========================
+     photo — файл в папке img/, например "img/kseniia.jpg"          */
+
+  founders: [
     {
-      id: "ksenia",
-      name: "Ksenia Klever",
-      role: "Founder · Lead producer",
-      short: "Director, producer, screenwriter.",
+      id: "kseniia",
+      name: "Kseniia Klever",
+      short: "Director, Producer, Screenwriter",
+      title: "Founder & Lead Producer, Twinies",
       photo: "",
-      tags: ["Founder", "Lead producer", "Director", "Screenwriter"],
-      bio: "In eight years of work I have been a theatre director, an art director, a writer of horror stories and plenty else. But I was always alone on that road. I was always «not the way you are supposed to be» — too strange, too mad, too hard to read. I built Twinies to bring the misfits together and give them a chance to make something real.",
-      quote: "If human stupidity had been cherished and cultivated for centuries the way intelligence has, perhaps it would have turned into something extraordinarily precious.",
+      achievements: [
+        "Produced, wrote, and directed 120+ projects, managing over $600K in production budgets.",
+        "Brought 157 emerging artists into paid productions through Twinies, with 80+ now working in the film industry.",
+        "Won twelve international film and screenwriting festivals.",
+        "Led a 124-person cast and crew on an original series backed by $225K in financing.",
+        "Curated 160+ cultural events attended by 50,000+ people."
+      ],
+      about: "Over eight years, I've been a theater director, an art director, a horror writer, and a hundred other things. But through it all, I was always on my own. I was never what I was supposed to be. Always too strange, too crazy, too hard to understand. I created Twinies to bring together all the misfits and give them a chance to create something real.",
+      quote: "If human foolishness had been as carefully nurtured and cultivated as intelligence has been for centuries, perhaps it would have turned into something extremely precious.",
       cite: "Yevgeny Zamyatin, We"
     },
     {
       id: "alisa",
-      name: "Alisa Saxon",
-      role: "Co-founder · Lead producer",
-      short: "Screenwriter, producer.",
+      name: "Alisa Sakson",
+      short: "Screenwriter, Producer",
+      title: "Co-Founder & Lead Producer, Twinies",
       photo: "",
-      tags: ["Co-founder", "Lead producer", "Screenwriter"],
-      bio: "Six years of trying to break into the Russian film industry as a screenwriter brought me a pile of horrors: my work was stolen, big productions lied to me, and once I nearly ended up in prison over a script of mine. I left to study in America to finally get creative freedom. I joined Twinies to give everyone the chance to make art freely.",
-      quote: "Freedom is the right to tell people what they do not want to hear.",
-      cite: "George Orwell"
+      achievements: [
+        "Wrote, produced, and directed 30+ projects, managing over $200K in production budgets.",
+        "Developed original television series for NMG — Russia's largest media holding — and pitched projects to three major streaming platforms: Okko, Kion, and Premier.",
+        "Won sixteen international film and screenwriting festivals.",
+        "Secured a $52K national arts grant for an original theatrical production."
+      ],
+      about: "For six years, I fought to make it as a screenwriter in the Russian film industry, and encountered more than my share of horrors. My scripts were stolen, major production companies cheated me, and once I even came close to going to prison over something I'd written. I left Russia to study in America, hoping to finally find the creative freedom I'd been fighting for. I joined Twinies because I want everyone, everywhere, to have the freedom to create art on their own terms.",
+      quote: "If liberty means anything at all it means the right to tell people what they do not want to hear.",
+      cite: "George Orwell, The Freedom of the Press"
     }
   ],
 
 
   /* ======================= ПОДРАЗДЕЛЕНИЯ =======================
-     logo  — картинка сигила из папки img/
-     roles — кто входит, коротко, через ·
-     desc  — абзац о том, чем занимается подразделение               */
+     На главной показываются только логотипы.
+     Описание открывается на странице подразделения.                */
 
   divisions: [
     {
       id: "eye",
       name: "Eye",
       logo: "img/eye.png",
-      roles: "Directors · DOPs · Editors",
-      desc: "The Eye decides what the film looks like. Directing, camera, light and the cut — from a one-day shoot to a full production cycle."
+      roles: "Directors, Cinematographers & Editors",
+      desc: "We bring visions to life, from the first wild idea to the final frame. We dream up, shoot, and edit films, commercials, music videos, and anything else meant to be seen."
     },
     {
       id: "hand",
       name: "Hand",
       logo: "img/hand.png",
-      roles: "Design · Art · AI",
-      desc: "The Hand makes everything you see around the frame: identity, titles, posters, art direction, props and AI-assisted imagery."
+      roles: "Design, Art & AI",
+      desc: "We turn imagination into something you can see and touch. We build visual identities, create bold designs, graphics, illustrations, and entire digital worlds. No rules and no limits."
     },
     {
       id: "mouth",
       name: "Mouth",
       logo: "img/mouth.png",
-      roles: "Producers · Marketing · Mediation",
-      desc: "The Mouth talks to the world: producing, budgets, partners, release and press. It is also where a brief turns into a plan."
+      roles: "Producers, Marketing & Mediation",
+      desc: "We make things happen. We turn impossible ideas into real projects, bring the right people together, break down barriers, build strategies, and lead productions from chaos to creation."
     },
     {
       id: "ear",
       name: "Ear",
       logo: "img/ear.png",
-      roles: "Musicians · Sound",
-      desc: "The Ear writes the score and builds the sound: original music, sound design, mixing and everything a scene needs to be heard."
+      roles: "Musicians, Sound Designers & Audio Engineers",
+      desc: "We give ideas a voice. We compose original music, design soundscapes, and shape the sound of films, commercials, and digital experiences. From the first note to the final echo."
     }
   ],
 
 
   /* ========================= СОТРУДНИКИ =========================
      Ключи eye / hand / mouth / ear — те же id, что у подразделений.
-     Чтобы добавить человека — скопируйте любую строчку { … } целиком
-     и впишите своё. Чтобы убрать — удалите её вместе с фигурными
-     скобками и запятой.
+     Чтобы добавить человека — скопируйте строку { … } целиком
+     и впишите своё. Чтобы убрать — удалите её вместе со скобками.
 
-     links — кнопки под карточкой: ["Подпись", "ссылка"]              */
+     links — кнопки под карточкой: ["Подпись", "ссылка"]            */
 
   team: {
     eye: [
-      { name: "Twinie 01", role: "Director",       photo: "", bio: "", links: [] },
-      { name: "Twinie 02", role: "DOP",            photo: "", bio: "", links: [] },
-      { name: "Twinie 03", role: "Editor",         photo: "", bio: "", links: [] }
+      { name: "Twinie 01", role: "Director",        photo: "", bio: "", links: [] },
+      { name: "Twinie 02", role: "Cinematographer", photo: "", bio: "", links: [] },
+      { name: "Twinie 03", role: "Editor",          photo: "", bio: "", links: [] }
     ],
     hand: [
-      { name: "Twinie 04", role: "Art director",   photo: "", bio: "", links: [] },
-      { name: "Twinie 05", role: "Graphic design", photo: "", bio: "", links: [] },
-      { name: "Twinie 06", role: "AI artist",      photo: "", bio: "", links: [] }
+      { name: "Twinie 04", role: "Art director",    photo: "", bio: "", links: [] },
+      { name: "Twinie 05", role: "Graphic design",  photo: "", bio: "", links: [] },
+      { name: "Twinie 06", role: "AI artist",       photo: "", bio: "", links: [] }
     ],
     mouth: [
-      { name: "Twinie 07", role: "Producer",       photo: "", bio: "", links: [] },
-      { name: "Twinie 08", role: "Marketing",      photo: "", bio: "", links: [] }
+      { name: "Twinie 07", role: "Producer",        photo: "", bio: "", links: [] },
+      { name: "Twinie 08", role: "Marketing",       photo: "", bio: "", links: [] }
     ],
     ear: [
-      { name: "Twinie 09", role: "Composer",       photo: "", bio: "", links: [] },
-      { name: "Twinie 10", role: "Sound designer", photo: "", bio: "", links: [] }
+      { name: "Twinie 09", role: "Composer",        photo: "", bio: "", links: [] },
+      { name: "Twinie 10", role: "Sound designer",  photo: "", bio: "", links: [] }
     ]
   },
 
 
-  /* =========================== ПРОЕКТЫ ===========================
-     cover — обложка из папки img/. Без неё карточка будет в шашку.
-     reel  — ССЫЛКА-EMBED на видео, именно в таком виде:
-               YouTube   https://www.youtube.com/embed/КОД_ВИДЕО
-               Vimeo     https://player.vimeo.com/video/НОМЕР
-             Обычная ссылка из адресной строки не подойдёт.
-     tags  — какие подразделения работали над проектом               */
+  /* ====================== ФИЛЬМЫ СТУДИИ ======================
+     Собственные проекты Твинис. Афиша + описание, трейлер позже.
+     poster  — файл в img/, например "img/film-poster.jpg"
+     trailer — ССЫЛКА-EMBED, именно в таком виде:
+                 YouTube   https://www.youtube.com/embed/КОД
+                 Vimeo     https://player.vimeo.com/video/НОМЕР
+               Пока пусто — в окне написано, что трейлер скоро.     */
 
-  projects: [
+  films: [
     {
-      title: "Project 01",
-      kind: "Short film",
-      cover: "",
-      reel: "",
-      desc: "Synopsis, year, festivals, and which divisions worked on it.",
-      tags: ["Eye", "Hand", "Ear"]
-    },
-    {
-      title: "Project 02",
-      kind: "Music video",
-      cover: "",
-      reel: "",
-      desc: "Artist, label, format, where it premiered.",
-      tags: ["Eye", "Ear"]
-    },
-    {
-      title: "Project 03",
-      kind: "Commercial",
-      cover: "",
-      reel: "",
-      desc: "Client, task, result. Short and concrete reads best here.",
-      tags: ["Mouth", "Eye"]
+      title: "Название фильма",
+      year: "2026",
+      kind: "Feature film",
+      poster: "",
+      trailer: "",
+      desc: "Описание фильма: о чём он, кто снимал, где показывали. Два-три абзаца максимум — длинные тексты здесь никто не читает."
     }
+  ],
+
+
+  /* ======================== ЛЕНТА РАБОТ ========================
+     Работы ребят из команды. Только картинки, без описаний.
+     img — файл в папке img/. Клик открывает картинку крупно.
+     Добавлять можно сколько угодно — лента сама разложится.        */
+
+  works: [
+    { img: "", alt: "" },
+    { img: "", alt: "" },
+    { img: "", alt: "" },
+    { img: "", alt: "" },
+    { img: "", alt: "" },
+    { img: "", alt: "" },
+    { img: "", alt: "" },
+    { img: "", alt: "" }
+  ],
+
+
+  /* ===================== ТЕКСТЫ СТРАНИЦ ===================== */
+
+  createIntro: [
+    "The same thing can be seen a thousand different ways. We bring together people with different perspectives, backgrounds, and creative minds to come up with ideas none of us could ever imagine alone.",
+    "We create anything and everything across film, art, and everything that doesn't exist yet. From the smallest detail to an entire world, we dream it up, design it, make it happen, and bring it to life. Any form and any scale."
+  ],
+
+  joinIntro: [
+    "If you're just starting out, we'll teach you everything we know. We'll show you how the industry works and help you find your place in it.",
+    "And if you're already a master of your craft, we'll find you projects that make your eyes light up.",
+    "We love teaching, creating, and meeting talented misfits.",
+    "Fill out the form. Let's do some gloriously stupid things together!"
   ]
 
 };

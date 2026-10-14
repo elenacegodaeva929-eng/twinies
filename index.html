@@ -12,23 +12,25 @@
 <meta property="og:type" content="website">
 <!-- Картинка для превью в соцсетях: положите файл в img/ и впишите полный адрес
      <meta property="og:image" content="https://ваш-домен/img/og.jpg"> -->
+<link rel="icon" href="img/favicon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Archivo:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,800;1,6..96,700&family=Archivo:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <header class="nav">
-  <div class="wrap">
-    <button class="mark" data-go="home">TWINIES</button>
-    <nav>
-      <button data-scroll="owners">owners</button>
-      <button data-scroll="divisions">divisions</button>
-      <button data-scroll="projects">projects</button>
-      <button data-go="join">join us</button>
-      <button class="btn-cta" data-go="create">create</button>
+  <div class="wrap nav-in">
+    <button class="nav-logo" data-go="home" aria-label="Twinies — home">
+      <img src="img/logo-mark.png" alt="Twinies">
+    </button>
+    <nav aria-label="Main">
+      <button data-nav="founders">Founders</button>
+      <button data-nav="divisions">Divisions</button>
+      <button data-nav="projects">Projects</button>
+      <button class="cta" data-go="create">Create</button>
     </nav>
   </div>
 </header>
@@ -36,121 +38,151 @@
 <!-- ============================ ГЛАВНАЯ ============================ -->
 <main id="view-home">
 
-  <div class="hero">
-    <div class="wrap">
-      <svg class="star" viewBox="0 0 100 100" aria-hidden="true">
-        <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#8FE02C"/><stop offset="50%" stop-color="#59E1FF"/><stop offset="100%" stop-color="#8A3FF0"/>
-        </linearGradient></defs>
-        <path d="M50 2 L58 36 L92 44 L58 52 L50 98 L42 52 L8 44 L42 36 Z" fill="url(#g1)"/>
+  <section class="hero">
+    <canvas class="spiral" id="spiral" aria-hidden="true"></canvas>
+
+    <div class="wrap hero-in">
+      <svg class="crystal" viewBox="0 0 120 120" aria-hidden="true">
+        <defs>
+          <linearGradient id="cg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#7CFF2E"/>
+            <stop offset="48%" stop-color="#4FE8FF"/>
+            <stop offset="100%" stop-color="#B14BFF"/>
+          </linearGradient>
+        </defs>
+        <path d="M60 2 C63 40 80 57 118 60 C80 63 63 80 60 118 C57 80 40 63 2 60 C40 57 57 40 60 2 Z" fill="url(#cg)"/>
       </svg>
 
-      <div id="heroLogo"></div>
+      <h1 class="hero-logo">
+        <img src="img/logo-hero.png" alt="Twinies">
+      </h1>
 
-      <!-- ====== ТЕКСТ ГЛАВНОГО ЭКРАНА — правится прямо здесь ====== -->
-      <h1 class="title">TWINIES</h1>
-      <p class="tagline">Clown production studio</p>
+      <p class="tagline" id="tagline"></p>
 
-      <div id="heroClown"></div>
-
-      <p class="lede">Twinies is a clown production studio bringing artists from around the world together to create independent art in all its forms. Our mission is to make art accessible to everyone, regardless of background, status or experience.</p>
-      <p class="lede">At Twinies, we're all twins. No two of us are alike, but we share a love for creating and a taste for the unconventional. Rebellion against the system, creative freedom, unconventional thinking and staying true to ourselves — that's what Twinies is all about.</p>
-      <!-- ====== конец текста главного экрана ====== -->
+      <div class="hero-text" id="heroText"></div>
 
       <div class="btnrow">
         <button class="btn" data-go="create">Create art with us</button>
-        <button class="btn ghost" data-scroll="divisions">Meet the twinies</button>
+        <button class="btn ghost" data-nav="divisions">Meet the twinies</button>
       </div>
-    </div>
-  </div>
-
-  <div class="chk"></div>
-
-  <section id="owners">
-    <div class="wrap">
-      <div class="head">
-        <span class="eyebrow">01</span>
-        <h2>Owners</h2>
-        <p>Two founders, one studio. Tap a card to read the full story.</p>
-      </div>
-      <div class="owners" id="ownerGrid"></div>
-      <div id="ownerDetail"></div>
     </div>
   </section>
 
-  <div class="chk"></div>
+  <div class="marquee" aria-hidden="true"><div class="marquee-track"></div></div>
 
-  <section id="divisions">
+  <!-- ---------------------------- FOUNDERS ---------------------------- -->
+  <section id="founders" class="band">
     <div class="wrap">
       <div class="head">
-        <span class="eyebrow">02</span>
+        <span class="num">01</span>
+        <h2>Founders</h2>
+      </div>
+      <div class="founders" id="founderGrid"></div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- --------------------------- DIVISIONS --------------------------- -->
+  <section id="divisions" class="band">
+    <div class="wrap">
+      <div class="head">
+        <span class="num">02</span>
         <h2>Divisions</h2>
-        <p>Four senses, one studio. Tap a sigil to open the division and its team.</p>
       </div>
       <div class="divs" id="divGrid"></div>
-      <div id="divPanel"></div>
     </div>
   </section>
 
-  <div class="chk"></div>
+  <div class="marquee marquee-rev" aria-hidden="true"><div class="marquee-track"></div></div>
 
-  <section id="projects">
+  <!-- ---------------------------- PROJECTS ---------------------------- -->
+  <section id="projects" class="band">
     <div class="wrap">
       <div class="head">
-        <span class="eyebrow">03</span>
+        <span class="num">03</span>
         <h2>Projects</h2>
-        <p>Showreel and description open in a window over the page.</p>
       </div>
-      <div class="projects" id="projGrid"></div>
+
+      <h3 class="sub">Our films</h3>
+      <div class="films" id="filmGrid"></div>
+
+      <h3 class="sub sub-2">Works by our twinies</h3>
+      <div class="works" id="workGrid"></div>
     </div>
   </section>
+
+  <!-- ------------------------------ JOIN ------------------------------ -->
+  <section class="join-band">
+    <div class="wrap">
+      <h2 class="join-h">Become<br>a twinie</h2>
+      <div class="join-text" id="joinTeaser"></div>
+      <button class="btn" data-go="join">Open call</button>
+    </div>
+  </section>
+</main>
+
+<!-- ============================ ФАУНДЕР ============================ -->
+<main id="view-founder" hidden>
+  <div class="wrap">
+    <button class="back" data-nav="founders">← All founders</button>
+    <div id="founderBody"></div>
+  </div>
+</main>
+
+<!-- ========================= ПОДРАЗДЕЛЕНИЕ ========================= -->
+<main id="view-division" hidden>
+  <div class="wrap">
+    <button class="back" data-nav="divisions">← All divisions</button>
+    <div id="divisionBody"></div>
+  </div>
 </main>
 
 <!-- ============================ CREATE ============================ -->
 <main id="view-create" hidden>
-  <div class="chk"></div>
-  <section>
-    <div class="wrap">
-      <div class="head">
-        <span class="eyebrow">Brief</span>
-        <h2>Create art</h2>
-        <p>Tell us what you need. We read everything and answer from the same address.</p>
-      </div>
-      <div id="createBody"></div>
+  <div class="wrap">
+    <button class="back" data-go="home">← Home</button>
+    <div class="head page-head">
+      <span class="num">Brief</span>
+      <h2>Create art</h2>
     </div>
-  </section>
+    <div class="page-intro" id="createIntro"></div>
+    <div id="createBody"></div>
+  </div>
 </main>
 
 <!-- ============================= JOIN ============================= -->
 <main id="view-join" hidden>
-  <div class="chk"></div>
-  <section>
-    <div class="wrap">
-      <div class="head">
-        <span class="eyebrow">Open call</span>
-        <h2>Become a twinie</h2>
-        <p>No two of us are alike. We don't need a perfect CV — we need someone who makes things and won't stop.</p>
-      </div>
-      <div id="joinBody"></div>
+  <div class="wrap">
+    <button class="back" data-go="home">← Home</button>
+    <div class="head page-head">
+      <span class="num">Open call</span>
+      <h2>Become a twinie</h2>
     </div>
-  </section>
+    <div class="page-intro" id="joinIntro"></div>
+    <div id="joinBody"></div>
+  </div>
 </main>
 
 <footer>
   <div class="wrap foot-in">
     <div>
-      <p class="eyebrow">Work with us</p>
-      <p id="footMail"></p>
+      <img class="foot-logo" src="img/logo-mark.png" alt="Twinies">
+      <p class="foot-tag">Independent art in all its forms.</p>
     </div>
-    <div class="foot-btns">
-      <button class="btn" data-go="create">Create art</button>
-      <button class="btn ghost" data-go="join">Become a twinie</button>
+    <div class="foot-col">
+      <span class="label">Work with us</span>
+      <p id="footMail"></p>
+      <div class="foot-btns">
+        <button class="btn small" data-go="create">Create art</button>
+        <button class="btn small ghost" data-go="join">Join us</button>
+      </div>
     </div>
   </div>
-  <div class="wrap copy">© 2026 Twinies. Independent art, all forms.</div>
+  <div class="wrap copy">© 2026 Twinies</div>
 </footer>
 
-<div id="modalRoot"></div>
+<div id="overlay"></div>
 
 <script src="content.js"></script>
 <script src="app.js"></script>
