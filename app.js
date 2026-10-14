@@ -21,6 +21,31 @@ function pic(src, cls, alt, phText){
     : '<div class="slot ' + cls + '">' + (phText || "photo") + '</div>';
 }
 
+/* ------------------------------- бургер ------------------------------- */
+(function(){
+  var btn = $("burger"), nav = document.querySelector("header.nav");
+  if(!btn || !nav) return;
+
+  function setOpen(open){
+    nav.setAttribute("data-open", String(open));
+    btn.setAttribute("aria-expanded", String(open));
+  }
+  btn.addEventListener("click", function(){
+    setOpen(nav.getAttribute("data-open") !== "true");
+  });
+  /* любой пункт меню закрывает панель */
+  nav.querySelector("nav").addEventListener("click", function(e){
+    if(e.target.closest("button")) setOpen(false);
+  });
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape") setOpen(false);
+  });
+  /* вернулись на широкий экран — панель больше не нужна */
+  window.addEventListener("resize", function(){
+    if(window.innerWidth > 860) setOpen(false);
+  });
+})();
+
 /* ------------------------------ прожектор ------------------------------ */
 (function(){
   var spot = $("spot"); if(!spot) return;

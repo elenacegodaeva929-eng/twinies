@@ -416,3 +416,65 @@ footer{padding-block:clamp(56px,7vw,92px);margin-top:clamp(28px,4vw,56px)}
 /* ---------- текст в раскрытой карточке — пошире ---------- */
 .bio .about{max-width:78ch}
 .ach li{max-width:92ch}
+
+/* =====================================================================
+   ПРАВКИ 2: бургер на телефоне, фиолетовое подчёркивание подразделений,
+   прожектор тише, логотип в hero крупнее.
+   ===================================================================== */
+
+/* ---------- подчёркивание открытого подразделения ---------- */
+.div-card[aria-expanded="true"]::after{
+  background:var(--purple); height:2px; border-radius:2px;
+  left:14px; right:14px; bottom:0;
+}
+
+/* ---------- прожектор тише ---------- */
+.spot{opacity:.42}
+.spot::after{
+  background:radial-gradient(ellipse 760px 660px at var(--mx) var(--my),
+    rgba(177,75,255,.07), transparent 78%);
+}
+@media (hover:none){ .spot{opacity:.34} }
+
+/* ---------- логотип в hero ещё крупнее ---------- */
+img.clown{max-width:min(900px,96%);max-height:min(68vh,700px)}
+
+/* ---------- бургер ---------- */
+.burger{display:none;background:none;border:0;cursor:pointer;padding:10px;
+  width:44px;height:44px;align-items:center;justify-content:center;gap:5px;flex-direction:column}
+.burger span{display:block;width:24px;height:2px;background:var(--paper);border-radius:2px;
+  transition:transform .22s ease, opacity .18s ease}
+.nav[data-open="true"] .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav[data-open="true"] .burger span:nth-child(2){opacity:0}
+.nav[data-open="true"] .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+@media (max-width:860px){
+  .nav .wrap{min-height:68px;padding-block:10px;gap:12px;position:relative;flex-wrap:nowrap}
+  .mark img{width:84px}
+  .burger{display:flex}
+
+  .nav nav{
+    position:absolute; top:100%; left:0; right:0;
+    flex-direction:column; align-items:stretch; gap:2px;
+    background:rgba(7,6,10,.97);
+    -webkit-backdrop-filter:blur(18px); backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--line);
+    padding:10px clamp(20px,4vw,56px) 22px;
+    display:none;
+  }
+  .nav[data-open="true"] nav{display:flex}
+
+  .nav nav button{text-align:left;font-size:17px;padding:14px 2px;letter-spacing:.01em}
+  .nav nav button::after{left:2px;right:auto;width:26px;bottom:8px}
+  .nav nav .btn-cta{margin:10px 0 0;text-align:center;padding:14px 30px;font-size:15px}
+}
+
+/* ---------- заметное фиолетовое подчёркивание открытой карточки ---------- */
+.div-card[aria-expanded="true"]::after{
+  left:0; right:0; bottom:-1px; height:3px; border-radius:0 0 13px 13px;
+  background:var(--purple);
+}
+
+/* ---------- роли в раскрытом подразделении — по левому краю ---------- */
+.panel .roles{text-align:left;color:var(--green);font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;font-size:12.5px;margin-top:10px}
