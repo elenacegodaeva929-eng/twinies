@@ -169,12 +169,12 @@ const CONTENT = {
 
   films: [
     {
-      title: "Название фильма",
+      title: "Film title",
       year: "2026",
       kind: "Feature film",
       poster: "",
       trailer: "",
-      desc: "Описание фильма: о чём он, кто снимал, где показывали. Два-три абзаца максимум — длинные тексты здесь никто не читает."
+      desc: "What the film is about, who made it, where it screened. Two or three paragraphs at most — nobody reads long text here."
     }
   ],
 

@@ -324,3 +324,95 @@ body{background:transparent}
   }
 }
 @media (prefers-reduced-motion:reduce){ .spot{animation:none} }
+
+/* =====================================================================
+   ПРАВКИ: меню, прожектор, hero, ширина, пункты, подвал.
+   Блок идёт последним, поэтому перекрывает всё, что выше.
+   ===================================================================== */
+
+/* ---------- шире вся страница ---------- */
+.wrap{width:min(1400px,100%);padding-inline:clamp(20px,4vw,56px)}
+.lede{max-width:70ch}
+.head p{max-width:54ch}
+
+/* ---------- меню: логотип меньше, с воздухом ---------- */
+.nav .wrap{min-height:84px;padding-block:14px;gap:24px}
+.mark img{width:clamp(86px,9vw,112px)}
+
+/* пункты с заглавной, без lowercase */
+.nav nav{gap:6px;align-items:center}
+.nav nav button{text-transform:none;font-size:14px;font-weight:600;
+  letter-spacing:.01em;padding:10px 14px}
+
+/* подчёркивание — тонкая фиолетовая линия */
+.nav nav button::after{left:14px;right:14px;bottom:4px;height:1.5px;
+  background:var(--purple);border-radius:1px}
+
+/* кнопка Create — пилюля с воздухом по бокам */
+.nav nav .btn-cta{background:var(--green);color:var(--ink);font-weight:700;
+  border-radius:999px;padding:11px 30px;letter-spacing:.02em;margin-left:8px}
+.nav nav .btn-cta:hover{background:var(--paper)}
+
+/* ---------- прожектор: мягче, крупнее клетка ---------- */
+.spot{
+  background:repeating-conic-gradient(var(--green) 0% 25%, var(--purple) 0% 50%) 0 0/64px 64px;
+  opacity:.72;
+  -webkit-mask-image:
+    radial-gradient(ellipse 340px 280px at calc(var(--mx) - 46px) calc(var(--my) - 34px),
+      rgba(0,0,0,.95) 0%, rgba(0,0,0,.6) 32%, rgba(0,0,0,.22) 58%, transparent 86%),
+    radial-gradient(ellipse 260px 330px at calc(var(--mx) + 54px) calc(var(--my) + 44px),
+      rgba(0,0,0,.9) 0%, rgba(0,0,0,.5) 36%, rgba(0,0,0,.18) 62%, transparent 90%);
+  mask-image:
+    radial-gradient(ellipse 340px 280px at calc(var(--mx) - 46px) calc(var(--my) - 34px),
+      rgba(0,0,0,.95) 0%, rgba(0,0,0,.6) 32%, rgba(0,0,0,.22) 58%, transparent 86%),
+    radial-gradient(ellipse 260px 330px at calc(var(--mx) + 54px) calc(var(--my) + 44px),
+      rgba(0,0,0,.9) 0%, rgba(0,0,0,.5) 36%, rgba(0,0,0,.18) 62%, transparent 90%);
+  -webkit-mask-composite:source-over;
+  mask-composite:add;
+}
+.spot::after{
+  background:radial-gradient(ellipse 620px 540px at var(--mx) var(--my),
+    rgba(177,75,255,.14), transparent 72%);
+}
+@media (hover:none){ .spot{opacity:.55} }
+
+/* ---------- hero: логотип крупнее ---------- */
+img.clown{max-width:min(760px,92%);max-height:min(60vh,600px);margin-top:18px}
+.hero .tagline{margin-top:26px}
+
+/* ---------- пункты достижений — ровный фиолетовый ---------- */
+.ach li::before{background:var(--purple);background-size:auto;width:9px;height:9px;
+  border-radius:2px;top:.56em}
+
+/* ---------- подвал просторнее ---------- */
+footer{padding-block:clamp(56px,7vw,92px);margin-top:clamp(28px,4vw,56px)}
+.foot-in{gap:clamp(32px,5vw,64px)}
+.foot-btns{gap:16px}
+.copy{margin-top:clamp(36px,5vw,52px)}
+
+/* ---------- прожектор: ещё мягче, край растворяется до нуля ---------- */
+.spot{
+  opacity:.68;
+  -webkit-mask-image:
+    radial-gradient(ellipse 430px 350px at calc(var(--mx) - 50px) calc(var(--my) - 42px),
+      rgba(0,0,0,.92) 0%, rgba(0,0,0,.74) 20%, rgba(0,0,0,.46) 40%,
+      rgba(0,0,0,.22) 60%, rgba(0,0,0,.08) 80%, transparent 100%),
+    radial-gradient(ellipse 330px 410px at calc(var(--mx) + 62px) calc(var(--my) + 52px),
+      rgba(0,0,0,.86) 0%, rgba(0,0,0,.62) 24%, rgba(0,0,0,.36) 46%,
+      rgba(0,0,0,.15) 70%, transparent 100%);
+  mask-image:
+    radial-gradient(ellipse 430px 350px at calc(var(--mx) - 50px) calc(var(--my) - 42px),
+      rgba(0,0,0,.92) 0%, rgba(0,0,0,.74) 20%, rgba(0,0,0,.46) 40%,
+      rgba(0,0,0,.22) 60%, rgba(0,0,0,.08) 80%, transparent 100%),
+    radial-gradient(ellipse 330px 410px at calc(var(--mx) + 62px) calc(var(--my) + 52px),
+      rgba(0,0,0,.86) 0%, rgba(0,0,0,.62) 24%, rgba(0,0,0,.36) 46%,
+      rgba(0,0,0,.15) 70%, transparent 100%);
+}
+.spot::after{
+  background:radial-gradient(ellipse 760px 660px at var(--mx) var(--my),
+    rgba(177,75,255,.11), transparent 78%);
+}
+
+/* ---------- текст в раскрытой карточке — пошире ---------- */
+.bio .about{max-width:78ch}
+.ach li{max-width:92ch}
