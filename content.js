@@ -135,26 +135,45 @@ const CONTENT = {
      вставить ниже и переписать. Чтобы убрать — удалить её
      вместе с фигурными скобками и запятой.
 
-     links — кнопки под карточкой: ["Подпись", "ссылка"]            */
+     На каждого человека:
+       name     — имя
+       role     — должность
+       photo    — файл фото, например "sergey.jpg"
+       bio      — абзацы о нём, каждый в кавычках через запятую
+       selected — блок «Selected work», одной строкой
+       projects — картинки его работ: ["work1.jpg", "work2.jpg"]
+                  они открываются по кнопке Projects в карточке
+       links    — доп. кнопки: ["Подпись", "ссылка"]                */
 
   team: {
     eye: [
-      { name: "Twinie 01", role: "Director",        photo: "", bio: "", links: [] },
-      { name: "Twinie 02", role: "Cinematographer", photo: "", bio: "", links: [] },
-      { name: "Twinie 03", role: "Editor",          photo: "", bio: "", links: [] }
+      {
+        name: "Sergey Sutyagin",
+        role: "Director, Screenwriter, Digital Designer & Production Designer",
+        photo: "",
+        bio: [
+          "Postgraduate student in Fiction Film Directing at the Gerasimov Institute of Cinematography (VGIK).",
+          "Director of six short films, with work screened at Russian and international film festivals. Actor at the Pyotr Fomenko Workshop Theatre in Moscow. Collaborates with CINEVENT PRODUCTION as a director of music videos and commissioned productions."
+        ],
+        selected: "Director of The Power of Childhood, It Can't Be!, Coincidences, and The Snowman, all screened at VGIK film festivals. Director of the music video Paskuda for V Oknakh Aprel. Actors' Assistant on the feature film The Master and Margarita (2024), script supervisor for the series Friendzone, and production designer of Twinies's short film Nothing Feels.",
+        projects: [],
+        links: []
+      },
+      { name: "Twinie 02", role: "Cinematographer", photo: "", bio: [], selected: "", projects: [], links: [] },
+      { name: "Twinie 03", role: "Editor",          photo: "", bio: [], selected: "", projects: [], links: [] }
     ],
     hand: [
-      { name: "Twinie 04", role: "Art director",    photo: "", bio: "", links: [] },
-      { name: "Twinie 05", role: "Graphic design",  photo: "", bio: "", links: [] },
-      { name: "Twinie 06", role: "AI artist",       photo: "", bio: "", links: [] }
+      { name: "Twinie 04", role: "Art director",    photo: "", bio: [], selected: "", projects: [], links: [] },
+      { name: "Twinie 05", role: "Graphic design",  photo: "", bio: [], selected: "", projects: [], links: [] },
+      { name: "Twinie 06", role: "AI artist",       photo: "", bio: [], selected: "", projects: [], links: [] }
     ],
     mouth: [
-      { name: "Twinie 07", role: "Producer",        photo: "", bio: "", links: [] },
-      { name: "Twinie 08", role: "Marketing",       photo: "", bio: "", links: [] }
+      { name: "Twinie 07", role: "Producer",        photo: "", bio: [], selected: "", projects: [], links: [] },
+      { name: "Twinie 08", role: "Marketing",       photo: "", bio: [], selected: "", projects: [], links: [] }
     ],
     ear: [
-      { name: "Twinie 09", role: "Composer",        photo: "", bio: "", links: [] },
-      { name: "Twinie 10", role: "Sound designer",  photo: "", bio: "", links: [] }
+      { name: "Twinie 09", role: "Composer",        photo: "", bio: [], selected: "", projects: [], links: [] },
+      { name: "Twinie 10", role: "Sound designer",  photo: "", bio: [], selected: "", projects: [], links: [] }
     ]
   },
 

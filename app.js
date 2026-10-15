@@ -183,14 +183,46 @@ function renderDivision(id){
     var links = (p.links || []).map(function(l){
       return '<a class="chip" href="' + esc(l[1]) + '" target="_blank" rel="noopener">' + esc(l[0]) + '</a>';
     }).join(" ");
-    card.innerHTML = '<div class="person-card">' + pic(p.photo, "photo", p.name) +
-      '<div style="min-width:0;display:grid;gap:10px;align-content:start">' +
-      '<div><h4>' + esc(p.name) + '</h4>' +
-      '<div class="rl" style="color:var(--green);font-weight:700;margin-top:4px">' +
-      esc(p.role) + ' · ' + esc(d.name) + '</div></div>' +
-      '<p style="color:var(--mute);font-size:14px">' + esc(p.bio || "Short bio goes here.") + '</p>' +
-      (links ? '<div class="chips">' + links + '</div>' : "") +
+    var paras = Array.isArray(p.bio) ? p.bio : (p.bio ? [p.bio] : []);
+    var bioHtml = paras.length
+      ? paras.map(function(t){ return '<p class="pc-bio">' + esc(t) + '</p>'; }).join("")
+      : '<p class="pc-bio pc-empty">Bio goes here.</p>';
+    var selHtml = p.selected
+      ? '<div><p class="eyebrow mb">Selected work</p><p class="pc-bio">' + esc(p.selected) + '</p></div>'
+      : "";
+
+    card.innerHTML = '<div class="person-card">' +
+      pic(p.photo, "photo", p.name) +
+      '<div class="pc-body">' +
+        '<div><h4>' + esc(p.name) + '</h4>' +
+        '<div class="pc-role">' + esc(p.role) + ' \u00b7 ' + esc(d.name) + '</div></div>' +
+        bioHtml + selHtml +
+        '<div class="chips">' +
+          '<button class="chip chip-btn" type="button" data-works="' + b.dataset.p + '">Projects \u2192</button>' +
+          links +
+        '</div>' +
       '</div></div>';
+
+    /* кнопка Projects — портфолио этого человека */
+    card.querySelector("[data-works]").addEventListener("click", function(){
+      var imgs = p.projects || [];
+      var body = imgs.length
+        ? '<div class="pf-grid">' + imgs.map(function(src){
+            return '<button class="pf-item" data-pf="' + esc(src) + '">' +
+              '<img src="' + esc(src) + '" alt="" loading="lazy"></button>';
+          }).join("") + '</div>'
+        : '<p class="pf-empty">Portfolio will appear here.</p>';
+      openModal('<div class="modal"><div class="body">' +
+        '<span class="kind">' + esc(p.role) + '</span>' +
+        '<h3>' + esc(p.name) + '</h3>' + body +
+        '</div></div>', p.name + " \u2014 projects");
+
+      var grid2 = modalRoot.querySelector(".pf-grid");
+      if(grid2) grid2.addEventListener("click", function(ev){
+        var it = ev.target.closest("[data-pf]"); if(!it) return;
+        openModal('<img src="' + esc(it.dataset.pf) + '" alt="">', p.name, "lightbox");
+      });
+    });
   });
 
   dPanel.querySelector("[data-close-div]").addEventListener("click", function(){

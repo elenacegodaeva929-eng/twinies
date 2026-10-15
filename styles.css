@@ -487,3 +487,233 @@ footer{
   backdrop-filter:blur(16px);
   border-top:1px solid var(--line);
 }
+
+/* =====================================================================
+   ПРАВКИ 3 (по комментариям клиента):
+   фон светлее, фаундеры меньше и квадратные, карточка сотрудника с
+   кнопкой Projects, мобильный прожектор без анимации, логотип меньше.
+   ===================================================================== */
+
+/* ---------- фон светлее: тёмно-фиолетовый вместо почти-чёрного ---------- */
+:root{
+  --ink:#15111E;
+  --ink-2:#1E1830;
+  --ink-3:#2A2040;
+  --line:rgba(201,164,255,.26);
+}
+.nav{background:rgba(21,17,30,.86)}
+footer{background:rgba(21,17,30,.84)}
+@media (max-width:860px){
+  .nav nav{background:rgba(21,17,30,.97)}
+}
+
+/* ---------- логотип в меню капельку меньше ---------- */
+.mark img{width:clamp(78px,8vw,100px)}
+@media (max-width:860px){ .mark img{width:74px} }
+
+/* ---------- фаундеры: квадратное фото, карточки компактнее ---------- */
+.owners{grid-template-columns:repeat(auto-fit,minmax(240px,380px));justify-content:start}
+.owner .photo{aspect-ratio:1;max-height:none}
+.owner h3{font-size:clamp(22px,2.4vw,30px)}
+
+@media (max-width:700px){
+  .owners{grid-template-columns:1fr 1fr;gap:10px}
+  .owner{padding:12px;gap:10px}
+  .owner h3{font-size:17px}
+  .owner .role{font-size:10.5px;letter-spacing:.06em;margin-top:5px}
+  .owner .short{display:none}
+  .owner .more{font-size:10.5px;letter-spacing:.08em}
+}
+
+/* ---------- карточка сотрудника: фото маленькое, текста много ---------- */
+.person-card{grid-template-columns:116px minmax(0,1fr);gap:20px;align-items:start}
+.person-card .photo{aspect-ratio:1;max-height:none;border-radius:8px}
+.pc-body{display:grid;gap:12px;min-width:0}
+.pc-body h4{font-size:clamp(20px,2.2vw,26px);line-height:1.05}
+.pc-role{color:var(--green);font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  font-size:11.5px;margin-top:6px}
+.pc-bio{color:#D8D2E2;font-size:14.5px;line-height:1.62;max-width:78ch}
+.pc-empty{color:var(--mute)}
+.chip-btn{background:none;cursor:pointer;font:inherit;font-size:11.5px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--green);border-color:var(--green)}
+.chip-btn:hover{background:var(--green);color:var(--ink)}
+
+@media (max-width:560px){
+  .person-card{grid-template-columns:76px minmax(0,1fr);gap:14px;padding:16px}
+  .person-card .photo{max-width:none}
+  .pc-bio{font-size:13.5px}
+}
+
+/* ---------- портфолио сотрудника в окне ---------- */
+.pf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:4px}
+.pf-item{padding:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--ink);
+  cursor:pointer;aspect-ratio:1}
+.pf-item:hover{border-color:var(--green)}
+.pf-item img{width:100%;height:100%;object-fit:cover;display:block}
+.pf-empty{color:var(--mute);font-size:14px}
+
+/* ---------- мобильный прожектор: без анимации, всегда по центру экрана ---------- */
+@media (hover:none){
+  .spot{
+    animation:none;
+    --mx:50vw; --my:50vh;
+    opacity:.3;
+  }
+}
+
+/* мобильное пятно компактнее, чтобы читалось как подсветка, а не как фон */
+@media (hover:none){
+  .spot{
+    opacity:.26;
+    -webkit-mask-image:
+      radial-gradient(ellipse 210px 190px at 46vw 46vh,
+        rgba(0,0,0,.92) 0%, rgba(0,0,0,.6) 36%, rgba(0,0,0,.2) 64%, transparent 100%),
+      radial-gradient(ellipse 160px 210px at 56vw 56vh,
+        rgba(0,0,0,.8) 0%, rgba(0,0,0,.45) 42%, transparent 100%);
+    mask-image:
+      radial-gradient(ellipse 210px 190px at 46vw 46vh,
+        rgba(0,0,0,.92) 0%, rgba(0,0,0,.6) 36%, rgba(0,0,0,.2) 64%, transparent 100%),
+      radial-gradient(ellipse 160px 210px at 56vw 56vh,
+        rgba(0,0,0,.8) 0%, rgba(0,0,0,.45) 42%, transparent 100%);
+  }
+  .spot::after{background:none}
+}
+
+/* =====================================================================
+   СВЕТЛАЯ ТЕМА — фон как на референсе из чата.
+
+   Чтобы вернуться к тёмной версии, удалите весь этот блок до конца файла.
+   ===================================================================== */
+
+:root{
+  --paper-bg:#F6F4F2;        /* базовый светлый */
+  --mint:#E6F5D6;            /* мятный сверху */
+  --lilac:#EEDDF7;           /* сиреневый снизу */
+  --ink:#F6F4F2;
+  --ink-2:#FFFFFF;           /* карточки */
+  --ink-3:#FBF7FD;           /* карточка под курсором */
+  --paper:#1A1526;           /* основной текст */
+  --mute:#6E6880;            /* второстепенный */
+  --green:#4FA81A;           /* зелёный, читаемый на светлом */
+  --green-bright:#7CFF2E;    /* для заливок и шашки */
+  --purple:#8A3FF0;
+  --line:rgba(26,21,38,.14);
+}
+
+html{background:var(--paper-bg)}
+body{
+  color:var(--paper);
+  background:
+    linear-gradient(176deg, var(--mint) 0%, rgba(246,244,242,0) 38%),
+    linear-gradient(356deg, var(--lilac) 0%, rgba(246,244,242,0) 42%),
+    var(--paper-bg);
+  background-attachment:fixed;
+}
+
+/* ---------- шапка и подвал ---------- */
+.nav{background:rgba(255,255,255,.72);border-bottom:1px solid var(--line)}
+footer{background:rgba(255,255,255,.66);border-top:1px solid var(--line)}
+@media (max-width:860px){ .nav nav{background:rgba(255,255,255,.97)} }
+.nav nav button{color:var(--paper)}
+.burger span{background:var(--paper)}
+
+/* логотипы — чёрные версии */
+.mark img{content:url("logo-mark-dark.png")}
+img.clown{content:url("logo-hero-dark.png");filter:none}
+
+/* ---------- прожектор на светлом ---------- */
+.spot{
+  opacity:.5;
+  background:repeating-conic-gradient(var(--green-bright) 0% 25%, var(--purple) 0% 50%) 0 0/64px 64px;
+}
+.spot::after{
+  background:radial-gradient(ellipse 760px 660px at var(--mx) var(--my),
+    rgba(138,63,240,.06), transparent 78%);
+}
+@media (hover:none){ .spot{opacity:.3} }
+
+/* ---------- заголовки и текст ---------- */
+.hero::before{
+  background:radial-gradient(60% 50% at 50% 0%,rgba(138,63,240,.10),transparent 70%),
+             radial-gradient(40% 40% at 78% 24%,rgba(124,255,46,.12),transparent 70%);
+}
+.hero::after{background:none}
+.tagline{color:var(--green)}
+.lede{color:#3A3350}
+.head p{color:var(--mute)}
+.bio p,.bio .about,.pc-bio,.panel .desc,.page-intro,.film .teaser,.modal .body>p,.foot-tag{color:#3A3350}
+
+/* ---------- карточки ---------- */
+.owner,.person,.panel,.bio,.modal,.div-card:hover,.pf-item{box-shadow:0 2px 14px rgba(26,21,38,.06)}
+.owner:hover,.person:hover,.person[aria-pressed="true"]{border-color:var(--purple)}
+.div-card:hover,.div-card[aria-expanded="true"]{background:#fff}
+.panel{border-color:var(--purple)}
+.person-card{border-color:var(--purple);background:#fff}
+.sigil{filter:drop-shadow(0 6px 16px rgba(138,63,240,.28))}
+.div-card:hover .sigil{filter:drop-shadow(0 12px 28px rgba(138,63,240,.45))}
+
+/* заглушки */
+.slot{border-color:var(--line);background:rgba(138,63,240,.04);color:var(--mute)}
+.portrait .ph,.work-ph{color:var(--mute)}
+.work-ph{background:repeating-linear-gradient(135deg,rgba(138,63,240,.07) 0 10px,transparent 10px 20px)}
+
+/* ---------- кнопки ---------- */
+.btn{background:var(--green-bright);border-color:var(--green-bright);color:#141022}
+.btn:hover{background:var(--paper);border-color:var(--paper);color:#fff}
+.btn.ghost{background:transparent;color:var(--paper);border-color:var(--purple)}
+.btn.ghost:hover{background:var(--purple);border-color:var(--purple);color:#fff}
+.nav nav .btn-cta{background:var(--green-bright);color:#141022}
+.nav nav .btn-cta:hover{background:var(--paper);color:#fff}
+.chip{color:var(--purple);border-color:rgba(138,63,240,.35)}
+.chip-btn{color:var(--purple);border-color:var(--purple)}
+.chip-btn:hover{background:var(--purple);color:#fff}
+.more{color:var(--purple)}
+.mail{color:var(--purple)}
+.mail:hover{color:var(--green)}
+
+/* ---------- формы ---------- */
+.field input,.field textarea,.field select{background:#fff;color:var(--paper);border-color:var(--line)}
+.field input::placeholder,.field textarea::placeholder{color:#9A93AC}
+.field label{color:var(--purple)}
+.ok{background:rgba(124,255,46,.16);border-color:var(--green)}
+.note{border-color:var(--line);color:var(--mute)}
+
+/* ---------- окна ---------- */
+.scrim{background:rgba(246,244,242,.86)}
+.x{background:#fff;color:var(--paper);border-color:var(--purple)}
+.x:hover{background:var(--purple);color:#fff}
+
+/* ---------- фикс: фон на html, чтобы прожектор был виден ---------- */
+html{
+  background:
+    linear-gradient(176deg, var(--mint) 0%, rgba(246,244,242,0) 38%),
+    linear-gradient(356deg, var(--lilac) 0%, rgba(246,244,242,0) 42%),
+    var(--paper-bg);
+  background-attachment:fixed;
+}
+body{background:transparent}
+
+/* ---------- фикс: шапка и подвал светлые (нужна та же специфичность) ---------- */
+header.nav{background:rgba(255,255,255,.74);border-bottom:1px solid var(--line)}
+header.nav nav button{color:var(--paper)}
+header.nav nav .btn-cta{background:var(--green-bright);color:#141022}
+header.nav nav .btn-cta:hover{background:var(--paper);color:#fff}
+header.nav nav button::after{background:var(--purple)}
+footer{background:rgba(255,255,255,.66)}
+@media (max-width:860px){ header.nav nav{background:rgba(255,255,255,.97)} }
+
+/* звезда на светлом — чуть крупнее и с мягкой тенью вместо свечения */
+.crystal,.star{filter:drop-shadow(0 4px 10px rgba(138,63,240,.25))}
+.hero .star{width:clamp(54px,7vw,86px)}
+
+/* ---------- добиваем светлый текст, оставшийся от тёмной темы ---------- */
+.ach li,.bio>p,.bio .about,.panel .desc,.modal .body>p,
+.pc-bio,.page-intro,.lede,.film .teaser{color:#3A3350}
+.person .rl,.owner .short,.roles,.copy,.foot-tag,.note,.pf-empty{color:var(--mute)}
+.kind,.film .meta,.tagline,.pc-role,.panel .roles{color:var(--green)}
+.div-card[aria-expanded="true"]::after,.nav nav button::after{background:var(--purple)}
+.bio{border-left-color:var(--purple)}
+blockquote{border-left-color:var(--purple)}
+.panel{background:#fff}
+.person{background:#FBF9FD}
+.closer:hover{color:var(--purple)}
