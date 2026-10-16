@@ -601,3 +601,6 @@ footer{background:rgba(21,17,30,.84)}
 @media (hover:none){
   .spot{background-size:cover;opacity:.55}
 }
+
+/* портреты кадрируются чуть выше центра, чтобы не срезало макушку */
+.person-card .photo, .av{object-position:50% 22%}

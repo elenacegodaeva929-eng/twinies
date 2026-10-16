@@ -62,7 +62,7 @@ const CONTENT = {
       name: "Kseniia Klever",
       short: "Director, Producer, Screenwriter",
       title: "Founder & Lead Producer, Twinies",
-      photo: "",
+      photo: "photo-a.jpg",
       achievements: [
         "Produced, wrote, and directed 120+ projects, managing over $600K in production budgets.",
         "Brought 157 emerging artists into paid productions through Twinies, with 80+ now working in the film industry.",
@@ -79,7 +79,7 @@ const CONTENT = {
       name: "Alisa Sakson",
       short: "Screenwriter, Producer",
       title: "Co-Founder & Lead Producer, Twinies",
-      photo: "",
+      photo: "photo-c.jpg",
       achievements: [
         "Wrote, produced, and directed 30+ projects, managing over $200K in production budgets.",
         "Developed original television series for NMG — Russia's largest media holding — and pitched projects to three major streaming platforms: Okko, Kion, and Premier.",
@@ -178,7 +178,7 @@ const CONTENT = {
       {
         name: "Vladimir Prudnikov",
         role: "Visual Artist, Editor, Cinematographer & Videographer",
-        photo: "",
+        photo: "photo-b.jpg",
         bio: [
           "Also known as immoimmoimmo / HikkaWarrior.",
           "Cinematographer and editor at Thunderbike Production, specializing in commercial videography, branded content, and visual storytelling."
