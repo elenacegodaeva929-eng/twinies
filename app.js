@@ -166,7 +166,7 @@ function renderDivision(id){
                        : '<span class="av"></span>';
       return '<button class="person" data-p="' + i + '" aria-pressed="false">' + av +
         '<span class="nm">' + esc(p.name) + '</span>' +
-        '<span class="rl">' + esc(p.role) + '</span></button>';
+        '<span class="rl">' + esc(p.role || "\u2014") + '</span></button>';
     }).join("") + '</div>' +
     '<div id="personCard"></div>' +
     '<button class="closer" type="button" data-close-div>Close division</button></div>';
@@ -195,7 +195,7 @@ function renderDivision(id){
       pic(p.photo, "photo", p.name) +
       '<div class="pc-body">' +
         '<div><h4>' + esc(p.name) + '</h4>' +
-        '<div class="pc-role">' + esc(p.role) + ' \u00b7 ' + esc(d.name) + '</div></div>' +
+        '<div class="pc-role">' + (p.role ? esc(p.role) + ' \u00b7 ' : "") + esc(d.name) + '</div></div>' +
         bioHtml + selHtml +
         '<div class="chips">' +
           '<button class="chip chip-btn" type="button" data-works="' + b.dataset.p + '">Projects \u2192</button>' +
@@ -211,9 +211,14 @@ function renderDivision(id){
             return '<button class="pf-item" data-pf="' + esc(src) + '">' +
               '<img src="' + esc(src) + '" alt="" loading="lazy"></button>';
           }).join("") + '</div>'
-        : '<p class="pf-empty">Portfolio will appear here.</p>';
+        : "";
+      if(p.portfolio){
+        body += '<div><a class="btn" href="' + esc(p.portfolio) + '" target="_blank" rel="noopener">' +
+                'Open full portfolio \u2192</a></div>';
+      }
+      if(!body) body = '<p class="pf-empty">Portfolio will appear here.</p>';
       openModal('<div class="modal"><div class="body">' +
-        '<span class="kind">' + esc(p.role) + '</span>' +
+        (p.role ? '<span class="kind">' + esc(p.role) + '</span>' : "") +
         '<h3>' + esc(p.name) + '</h3>' + body +
         '</div></div>', p.name + " \u2014 projects");
 

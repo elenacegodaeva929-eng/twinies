@@ -578,3 +578,26 @@ footer{background:rgba(21,17,30,.84)}
   }
   .spot::after{background:none}
 }
+
+/* =====================================================================
+   ПРАВКИ 4: под курсором проступает сам фирменный фон — та светлая
+   шашка с завитками, что прислал клиент, а не плоский зелёно-фиолетовый
+   узор. Файл pattern.jpg, лежит рядом с index.html.
+   ===================================================================== */
+
+.spot{
+  /* cover + no-repeat: картинка не стыкуется сама с собой, поэтому
+     при повторе были видны прямые швы. Теперь один кадр на весь экран. */
+  background:url("pattern.jpg") center center / cover no-repeat;
+  opacity:.8;
+}
+.spot::after{
+  background:radial-gradient(ellipse 820px 700px at var(--mx) var(--my),
+    rgba(201,164,255,.10), transparent 76%);
+}
+@media (hover:none){ .spot{opacity:.66} }
+
+/* на телефоне кадр чуть крупнее пятна, но без повторов и швов */
+@media (hover:none){
+  .spot{background-size:cover;opacity:.55}
+}
