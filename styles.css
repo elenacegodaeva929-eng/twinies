@@ -604,3 +604,39 @@ footer{background:rgba(21,17,30,.84)}
 
 /* портреты кадрируются чуть выше центра, чтобы не срезало макушку */
 .person-card .photo, .av{object-position:50% 22%}
+
+/* =====================================================================
+   ПРАВКИ 5
+   1. Фон-прожектор темнее и резче — текст поверх снова читается,
+      неоновый логотип не «грязнится».
+   2. Фаундеры по центру — справа больше нет пустоты.
+   3. Лента работ: под каждой работой автор с кружком-фото.
+   ===================================================================== */
+
+.spot{ opacity:.72 }
+@media (hover:none){ .spot{ opacity:.5 } }
+.spot::after{
+  background:radial-gradient(ellipse 820px 700px at var(--mx) var(--my),
+    rgba(201,164,255,.07), transparent 76%);
+}
+
+/* ---- фаундеры по центру ---- */
+.owners{ grid-template-columns:repeat(auto-fit,minmax(240px,380px)); justify-content:center }
+@media (max-width:560px){ .owners{ grid-template-columns:1fr 1fr; justify-content:stretch } }
+
+/* ---- лента работ с подписью автора ---- */
+.works{ columns:4 210px; column-gap:clamp(10px,1.4vw,16px) }
+.work-cell{ break-inside:avoid; margin:0 0 clamp(14px,1.8vw,20px); display:block }
+.work{ margin:0 }
+.work-cell:nth-child(3n) .work-ph{ aspect-ratio:3/4 }
+.work-cell:nth-child(4n) .work-ph{ aspect-ratio:4/3 }
+.work-cell figcaption{ margin-top:8px }
+
+.by{ display:flex; align-items:center; gap:8px; min-width:0 }
+.by-av{ width:24px; height:24px; flex:0 0 24px; border-radius:50%;
+  object-fit:cover; object-position:50% 22%; border:1px solid rgba(255,255,255,.14) }
+.by-av-ph{ background:linear-gradient(135deg,var(--green),var(--purple)); opacity:.5 }
+.by-name{ font-size:12px; letter-spacing:.04em; color:var(--mute);
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+
+@media (max-width:560px){ .works{ columns:2 130px } .by-name{ font-size:11px } }

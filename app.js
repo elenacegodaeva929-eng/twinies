@@ -197,37 +197,8 @@ function renderDivision(id){
         '<div><h4>' + esc(p.name) + '</h4>' +
         '<div class="pc-role">' + (p.role ? esc(p.role) + ' \u00b7 ' : "") + esc(d.name) + '</div></div>' +
         bioHtml + selHtml +
-        '<div class="chips">' +
-          '<button class="chip chip-btn" type="button" data-works="' + b.dataset.p + '">Projects \u2192</button>' +
-          links +
-        '</div>' +
+        (links ? '<div class="chips">' + links + '</div>' : "") +
       '</div></div>';
-
-    /* кнопка Projects — портфолио этого человека */
-    card.querySelector("[data-works]").addEventListener("click", function(){
-      var imgs = p.projects || [];
-      var body = imgs.length
-        ? '<div class="pf-grid">' + imgs.map(function(src){
-            return '<button class="pf-item" data-pf="' + esc(src) + '">' +
-              '<img src="' + esc(src) + '" alt="" loading="lazy"></button>';
-          }).join("") + '</div>'
-        : "";
-      if(p.portfolio){
-        body += '<div><a class="btn" href="' + esc(p.portfolio) + '" target="_blank" rel="noopener">' +
-                'Open full portfolio \u2192</a></div>';
-      }
-      if(!body) body = '<p class="pf-empty">Portfolio will appear here.</p>';
-      openModal('<div class="modal"><div class="body">' +
-        (p.role ? '<span class="kind">' + esc(p.role) + '</span>' : "") +
-        '<h3>' + esc(p.name) + '</h3>' + body +
-        '</div></div>', p.name + " \u2014 projects");
-
-      var grid2 = modalRoot.querySelector(".pf-grid");
-      if(grid2) grid2.addEventListener("click", function(ev){
-        var it = ev.target.closest("[data-pf]"); if(!it) return;
-        openModal('<img src="' + esc(it.dataset.pf) + '" alt="">', p.name, "lightbox");
-      });
-    });
   });
 
   dPanel.querySelector("[data-close-div]").addEventListener("click", function(){
@@ -295,11 +266,32 @@ filmGrid.addEventListener("click", function(e){
     '<h3>' + esc(f.title) + '</h3><p>' + esc(f.desc) + '</p></div></div>', f.title);
 });
 
-/* ---------------------------- лента работ ---------------------------- */
+/* ---------------------------- лента работ ----------------------------
+   У каждой работы подписан автор. Имя из поля by ищется среди
+   сотрудников всех подразделений — оттуда берётся фото для кружка. */
+
+var PEOPLE = {};
+Object.keys(C.team || {}).forEach(function(k){
+  (C.team[k] || []).forEach(function(p){ if(p.name) PEOPLE[p.name] = p; });
+});
+(C.founders || []).forEach(function(p){ if(p.name && !PEOPLE[p.name]) PEOPLE[p.name] = p; });
+
+function credit(name){
+  if(!name) return "";
+  var p = PEOPLE[name];
+  var av = (p && p.photo)
+    ? '<img class="by-av" src="' + esc(p.photo) + '" alt="" loading="lazy">'
+    : '<span class="by-av by-av-ph" aria-hidden="true"></span>';
+  return '<span class="by">' + av + '<span class="by-name">' + esc(name) + '</span></span>';
+}
+
 $("workGrid").innerHTML = C.works.map(function(w, i){
-  return '<button class="work" data-work="' + i + '">' + (w.img
-    ? '<img src="' + esc(w.img) + '" alt="' + esc(w.alt || "") + '" loading="lazy">'
-    : '<span class="work-ph">work</span>') + '</button>';
+  return '<figure class="work-cell">' +
+    '<button class="work" data-work="' + i + '">' + (w.img
+      ? '<img src="' + esc(w.img) + '" alt="' + esc(w.alt || "") + '" loading="lazy">'
+      : '<span class="work-ph">work</span>') + '</button>' +
+    (w.by ? '<figcaption>' + credit(w.by) + '</figcaption>' : "") +
+  '</figure>';
 }).join("");
 
 $("workGrid").addEventListener("click", function(e){
@@ -307,7 +299,7 @@ $("workGrid").addEventListener("click", function(e){
   var w = C.works[+b.dataset.work];
   if(!w.img) return;
   lastFocus = b;
-  openModal('<img src="' + esc(w.img) + '" alt="' + esc(w.alt || "") + '">', w.alt || "Work", "lightbox");
+  openModal('<img src="' + esc(w.img) + '" alt="' + esc(w.alt || "") + '">', w.by || w.alt || "Work", "lightbox");
 });
 
 /* ------------------------------ формы ------------------------------ */
