@@ -157,7 +157,7 @@ const CONTENT = {
           "Postgraduate student in Documentary Film Directing at the Gerasimov Institute of Cinematography (VGIK).",
           "Nominee for Best Debut at the Lavr National Documentary Film Awards. His work has been featured at international documentary film festivals, including Artdocfest, Flahertiana, SiberiaDOC, the International Festival of Ethnological Film in Belgrade, Toronto International Short Film Awards, and Novaya Gazeta's Documentary Film Festival."
         ],
-        selected: "Editor of FKN, a feature-length documentary about the Higher School of Economics and Yandex, premiered in Moscow and released on Kinopoisk. Director and cinematographer of the short films I Remember and I Live in Zoo. Editor of Twinies' short film Nothing Feels. Experienced in documentary directing, cinematography, narrative editing, and visual storytelling.",
+        selected: "Editor of *FKN*, a feature-length documentary about the Higher School of Economics and Yandex, premiered in Moscow and released on Kinopoisk. Director and cinematographer of the short films *I Remember* and *I Live in Zoo*. Editor of Twinies' short film *Nothing Feels*. Experienced in documentary directing, cinematography, narrative editing, and visual storytelling.",
         links: []
       },
       {
@@ -168,7 +168,7 @@ const CONTENT = {
           "Bachelor's degree in Cinematography from the GITR Film and Television School. Seven years of experience in cinematography.",
           "Cinematographer at Pygmalion Pictures (Russia-K TV channel), Divi Television Company, and Dronov Production."
         ],
-        selected: "Cinematographer of the feature film Yesenin: Confession, the documentaries Rave Loneliness, In Spite of Childhood (Artdocfest 2026), and Invisible Happiness, and Twinies's short film Nothing Feels. Commercial cinematography for Italian musical instrument manufacturer Scandalli and the OUTLINE Music & Arts Festival. Experienced in feature films, documentaries, music videos, and commercial productions.",
+        selected: "Cinematographer of the feature film *Yesenin: Confession*, the documentaries *Rave Loneliness*, *In Spite of Childhood* (Artdocfest 2026), and *Invisible Happiness*, and Twinies's short film *Nothing Feels*. Commercial cinematography for Italian musical instrument manufacturer Scandalli and the OUTLINE Music & Arts Festival. Experienced in feature films, documentaries, music videos, and commercial productions.",
         links: []
       },
       {
@@ -179,7 +179,7 @@ const CONTENT = {
           "Postgraduate student in Fiction and Documentary Film Directing at the Gerasimov Institute of Cinematography (VGIK).",
           "Recipient of a film production grant from the Institute for Internet Development (IRI), 2023. Founder and producer of Komnata, a podcast production studio."
         ],
-        selected: "Director of Voices, recipient of two special distinctions at the 43rd VGIK International Student Film Festival, including the Roman Karmen Documentary Film Foundation Diploma. Director of Maybe It's Scary, screened at the Message to Man International Film Festival, and the short film The Place Where You Sleep. Experienced in fiction and documentary filmmaking, cinematography, audiovisual storytelling, and creative production.",
+        selected: "Director of *Voices*, recipient of two special distinctions at the 43rd VGIK International Student Film Festival, including the Roman Karmen Documentary Film Foundation Diploma. Director of *Maybe It's Scary*, screened at the Message to Man International Film Festival, and the short film *The Place Where You Sleep*. Experienced in fiction and documentary filmmaking, cinematography, audiovisual storytelling, and creative production.",
         links: []
       },
       {
@@ -190,7 +190,7 @@ const CONTENT = {
           "Postgraduate student in Fiction Film Directing at the Gerasimov Institute of Cinematography (VGIK).",
           "Director of six short films, with work screened at Russian and international film festivals. Actor at the Pyotr Fomenko Workshop Theatre in Moscow. Collaborates with CINEVENT PRODUCTION as a director of music videos and commissioned productions."
         ],
-        selected: "Director of The Power of Childhood, It Can't Be!, Coincidences, and The Snowman, all screened at VGIK film festivals. Director of the music video Paskuda for V Oknakh Aprel. Actors' Assistant on the feature film The Master and Margarita (2024), script supervisor for the series Friendzone, and production designer of Twinies's short film Nothing Feels.",
+        selected: "Director of *The Power of Childhood*, *It Can't Be!*, *Coincidences*, and *The Snowman*, all screened at VGIK film festivals. Director of the music video *Paskuda* for V Oknakh Aprel. Actors' Assistant on the feature film *The Master and Margarita* (2024), script supervisor for the series *Friendzone*, and production designer of Twinies's short film *Nothing Feels*.",
         links: []
       },
       {
@@ -201,7 +201,7 @@ const CONTENT = {
           "Also known as BCHGSV. Studied Screenwriting and Dramaturgy at the New York Film Academy.",
           "Director, cinematographer, and editor for BIOMACHINE, Yan Toples, and Mark Miller. Editing Director for OKRASHENO."
         ],
-        selected: "Cinematographer and editor of BIOMACHINE Doesn't Believe in Tears. Director of Volkramm — Together We Move and a Frame Tamer documentary (500K views). Edited BIOMACHINE productions reaching 1.8M views and shot Tonitut videos reaching up to 2.4M views. Experienced in documentary production, narrative editing, cinematography, color grading, and sound design.",
+        selected: "Cinematographer and editor of *BIOMACHINE Doesn't Believe in Tears*. Director of *Volkramm — Together We Move* and a Frame Tamer documentary (500K views). Edited BIOMACHINE productions reaching 1.8M views and shot Tonitut videos reaching up to 2.4M views. Experienced in documentary production, narrative editing, cinematography, color grading, and sound design.",
         links: []
       },
       {
@@ -211,7 +211,7 @@ const CONTENT = {
         bio: [
           "Postgraduate student in Fiction Film Directing at the Gerasimov Institute of Cinematography (VGIK)."
         ],
-        selected: "Director of the documentary A Silk Thread and the short film What Virginia Woolf Doesn't Say. First Assistant Director of Twinies's short film Nothing Feels. Experienced in fiction and documentary directing, creative production, and visual storytelling.",
+        selected: "Director of the documentary *A Silk Thread* and the short film *What Virginia Woolf Doesn't Say*. First Assistant Director of Twinies's short film *Nothing Feels*. Experienced in fiction and documentary directing, creative production, and visual storytelling.",
         links: []
       },
       {
@@ -245,7 +245,7 @@ const CONTENT = {
         bio: [
           "Independent digital artist specializing in AI-generated fashion, visual concept development, digital illustration, and experimental design. Creates fashion collections, brand identities, and audiovisual content using generative AI technologies."
         ],
-        selected: "Creator of Whitelean, a conceptual fashion collection developed through AI-generated designs. Founder of an independent digital art project exploring cyberpunk fashion and Y2K aesthetics. Develops AI-generated advertising campaigns, fashion visuals, digital artwork, and social media content. Experienced in AI animation, fashion illustration, creative direction, visual storytelling, and generative design using Midjourney, Nano Banana, Kling, and Seedance.",
+        selected: "Creator of *Whitelean*, a conceptual fashion collection developed through AI-generated designs. Founder of an independent digital art project exploring cyberpunk fashion and Y2K aesthetics. Develops AI-generated advertising campaigns, fashion visuals, digital artwork, and social media content. Experienced in AI animation, fashion illustration, creative direction, visual storytelling, and generative design using Midjourney, Nano Banana, Kling, and Seedance.",
         links: []
       },
       {
@@ -263,7 +263,7 @@ const CONTENT = {
         bio: [
           "Bachelor's degree in Fiction Film and Television Directing from Saint Petersburg State University of Film and Television (SPbGIKiT, 2026). Photographer and videographer since 2021. Photographer at Lensovet Palace of Culture and Rodeo Drive Water Park. Film Directing Instructor at LenDok Film Studio (2025–2026)."
         ],
-        selected: "Designed pitch decks and key art for Zhivaya Ten' (Living Shadow) and Skazki Goroda K (Tales of City K). Created posters for film projects including The Rat, Buyan Island, Meshchera, The Thing, and Twinies's short film Nothing Feels. Also created cover art for the band Blind Seagull and photographed underground music festivals in Saint Petersburg. Experienced in poster design, pitch deck creation, conceptual photography, visual development, and post-production.",
+        selected: "Designed pitch decks and key art for *Zhivaya Ten' (Living Shadow)* and *Skazki Goroda K (Tales of City K)*. Created posters for film projects including *The Rat*, *Buyan Island*, *Meshchera*, *The Thing*, and Twinies's short film *Nothing Feels*. Also created cover art for the band Blind Seagull and photographed underground music festivals in Saint Petersburg. Experienced in poster design, pitch deck creation, conceptual photography, visual development, and post-production.",
         links: []
       },
       {
@@ -274,7 +274,7 @@ const CONTENT = {
           "Diploma in Fashion Styling from Self Maid Styling School. Five years of experience in styling, makeup artistry, and art direction.",
           "Worked with Beograd Fashion Show, performance art project N.A.G, and Russian rapper Husky's fashion brand Papino Moloko."
         ],
-        selected: "Makeup artist for music videos by Lurve and Lostlost. Featured in music videos by Poshlaya Molly (Ty Razbila Papinu Mashinu, 22M views) and DDT (Ne S Vami, 1.4M views). Experienced in fashion styling, special effects makeup, visual concept development, and art direction.",
+        selected: "Makeup artist for music videos by Lurve and Lostlost. Featured in music videos by Poshlaya Molly (*Ty Razbila Papinu Mashinu*, 22M views) and DDT (*Ne S Vami*, 1.4M views). Experienced in fashion styling, special effects makeup, visual concept development, and art direction.",
         links: []
       },
       {
@@ -285,7 +285,7 @@ const CONTENT = {
           "Diploma in Graphic Design from Petrovsky State College. Artwork exhibited at the Erarta Museum of Contemporary Art.",
           "Lead Designer at AVB Invest, managing a team of five designers and contributing to nine B2B projects. UX/UI Designer at Devim Team. Completed 30+ freelance projects."
         ],
-        selected: "Visual design for the series Vibrate Higher (750K views), developed in collaboration with VK, Wink, and the Internet Development Institute. Designed digital platforms, brand identities, and promotional materials for commercial clients and Nochlezhka. Experienced in UX/UI design, branding, web development, and visual communications.",
+        selected: "Visual design for the series *Vibrate Higher* (750K views), developed in collaboration with VK, Wink, and the Internet Development Institute. Designed digital platforms, brand identities, and promotional materials for commercial clients and Nochlezhka. Experienced in UX/UI design, branding, web development, and visual communications.",
         links: []
       },
       {
@@ -296,7 +296,7 @@ const CONTENT = {
           "Graduated from art school and studied Print Design at Saint Petersburg State University of Industrial Technologies and Design.",
           "Awarded a $6.5K grant for art school equipment through an original sculpture project. Recipient of 3 Grand Prix and 23 first-place awards at Art Ptitsa competitions."
         ],
-        selected: "Illustrator of the forthcoming children's book Hedgehog on the Fence (40 illustrations), with artwork published in the Russian children's magazine Chitayka. Received an Honorable Mention at the international SAVE THE FROGS! Art Contest, with artwork published by the organizer. Designed the logo for Italian real estate company Lecito. Experienced in book illustration, character design, portraiture, and visual identity.",
+        selected: "Illustrator of the forthcoming children's book *Hedgehog on the Fence* (40 illustrations), with artwork published in the Russian children's magazine *Chitayka*. Received an Honorable Mention at the international SAVE THE FROGS! Art Contest, with artwork published by the organizer. Designed the logo for Italian real estate company Lecito. Experienced in book illustration, character design, portraiture, and visual identity.",
         links: []
       },
       {
@@ -307,7 +307,7 @@ const CONTENT = {
           "Also known as immoimmoimmo / HikkaWarrior. Multidisciplinary artist specializing in concept art, graffiti-inspired painting, digital illustration, hand-drawn lettering, graphic design, and experimental fashion.",
           "Founder of PAINTPUNK, an independent clothing and accessories line. Creates large-scale artworks, digital illustrations, custom typography, brand identities, and fashion merchandise."
         ],
-        selected: "Created six large-scale graffiti artworks (1.5–4.5 meters) for Brancho, an American-style bistro in Moscow, alongside original paintings Riot and Rage for Blood. Designed digital artwork and album covers for Code80, RILEY BABY, JaySoulhaze, and TRICKY YAREZ. Developed a limited-edition clothing and accessories collection in collaboration with Tricky High Club. His original artwork is featured in Twinies's short film Nothing Feels. Experienced in character design, custom lettering, logo design, hand-painted accessories, and visual identity development.",
+        selected: "Created six large-scale graffiti artworks (1.5–4.5 meters) for Brancho, an American-style bistro in Moscow, alongside original paintings *Riot* and *Rage for Blood*. Designed digital artwork and album covers for Code80, RILEY BABY, JaySoulhaze, and TRICKY YAREZ. Developed a limited-edition clothing and accessories collection in collaboration with Tricky High Club. His original artwork is featured in Twinies's short film *Nothing Feels*. Experienced in character design, custom lettering, logo design, hand-painted accessories, and visual identity development.",
         links: []
       },
       {
@@ -318,7 +318,7 @@ const CONTENT = {
           "Studied Fashion and Costume Design at the Moscow Art and Industry Institute (2023).",
           "Event Manager at HRT.AIFF (2025–2026), specializing in visual concepts, creative direction, and event production."
         ],
-        selected: "Creator of the Y2K Cyber Graduate Collection and the Mugler x SASHA MOLNIN collection concept. Designed visual materials for Rise Day & Night and developed the Creative Art Space interior concept. Experienced in graphic design, fashion illustration, costume design, styling, and visual identity development.",
+        selected: "Creator of the *Y2K Cyber Graduate Collection* and the *Mugler x SASHA MOLNIN* collection concept. Designed visual materials for *Rise Day & Night* and developed the *Creative Art Space* interior concept. Experienced in graphic design, fashion illustration, costume design, styling, and visual identity development.",
         links: []
       },
       {
@@ -328,7 +328,7 @@ const CONTENT = {
         bio: [
           "Five years of professional experience in graphic design and visual arts."
         ],
-        selected: "Created graphic materials for the short film Wake Up!, nonprofit initiative Nochlezhka, and e-commerce platforms Wildberries and Ozon. Designed advertising visuals, promotional posters, product graphics, and editorial-style artwork. Specializes in digital illustration, photo manipulation, and experimental graphic design.",
+        selected: "Created graphic materials for the short film *Wake Up!*, nonprofit initiative Nochlezhka, and e-commerce platforms Wildberries and Ozon. Designed advertising visuals, promotional posters, product graphics, and editorial-style artwork. Specializes in digital illustration, photo manipulation, and experimental graphic design.",
         links: []
       }
     ],
@@ -341,7 +341,7 @@ const CONTENT = {
           "Studied Fiction and Documentary Film Directing at the Gerasimov Institute of Cinematography (VGIK) on a full state scholarship.",
           "Founder & Head of Film Studio at Twinies. Oversees creative development, leads writing teams, evaluates and edits screenplays, supervises film production, and manages U.S. and international film festival strategy and submissions."
         ],
-        selected: "Creator, director, and producer of Nothing Feels. Creator and showrunner of Shkills, which attracted $225K in financing and generated 9.2M promotional views. Screenwriter and script editor for national television networks NTV and TV3. Winner and finalist at twelve international film and screenwriting festivals. Experienced in directing, creative producing, screenplay development, script editing, and international festival distribution.",
+        selected: "Creator, director, and producer of *Nothing Feels*. Creator and showrunner of *Shkills*, which attracted $225K in financing and generated 9.2M promotional views. Screenwriter and script editor for national television networks NTV and TV3. Winner and finalist at twelve international film and screenwriting festivals. Experienced in directing, creative producing, screenplay development, script editing, and international festival distribution.",
         links: []
       },
       {
@@ -352,7 +352,7 @@ const CONTENT = {
           "Coursework toward a Bachelor's in Screenwriting, Dramaturgy, and Film Studies at Bennington, USA, on a full merit scholarship.",
           "Co-Founder & Head of Film Studio at Twinies. Oversees script development, leads creative meetings with writing teams, edits and evaluates screenplays, and manages U.S. and international film festival strategy and submissions."
         ],
-        selected: "Screenwriter and producer of Nothing Feels. Head Writer of Infanta for National Media Group, Russia's largest media holding. Creator of Vaksa, pitched to Okko, Kion, and Premier ($85K offers). Secured a $52K grant from Russia's Presidential Fund for Cultural Initiatives for an original theatrical production. Winner and finalist at sixteen international film and screenwriting festivals. Experienced in creative producing, screenplay development, script editing, and international festival distribution.",
+        selected: "Screenwriter and producer of *Nothing Feels*. Head Writer of *Infanta* for National Media Group, Russia's largest media holding. Creator of *Vaksa*, pitched to Okko, Kion, and Premier ($85K offers). Secured a $52K grant from Russia's Presidential Fund for Cultural Initiatives for an original theatrical production. Winner and finalist at sixteen international film and screenwriting festivals. Experienced in creative producing, screenplay development, script editing, and international festival distribution.",
         links: []
       },
       {
@@ -373,7 +373,7 @@ const CONTENT = {
           "Also known as electrobolero. Studied Musicology at Humboldt University of Berlin and Cultural Studies at the Russian State University for the Humanities (RSUH). Trained in classical piano and electronic music production.",
           "Composer and sound designer for films, theatrical productions, contemporary dance, art installations, and commercial projects. Performed at major music and arts festivals and venues, including Outline, ARMA/Mutabor, Sun Spirit, and Archstoyanie."
         ],
-        selected: "Composer of original music for the theatrical production Khto Ni Ya and the immersive performance Ubaiukivanie. Created the original soundtrack for Menkvy, premiered at Outline Festival 2025. Experienced in film scoring, experimental electronic music, orchestral composition, sound design, and live performance.",
+        selected: "Composer of original music for the theatrical production *Khto Ni Ya* and the immersive performance *Ubaiukivanie*. Created the original soundtrack for *Menkvy*, premiered at Outline Festival 2025. Experienced in film scoring, experimental electronic music, orchestral composition, sound design, and live performance.",
         links: []
       },
       {
@@ -384,7 +384,7 @@ const CONTENT = {
           "Studying Sound Engineering of Audiovisual Arts at the GITR Film and Television School. Graduated from music school and is a proficient guitarist.",
           "Specializes in sound design and audio post-production for short films, animation, and audiovisual projects. Experienced in creating immersive soundscapes, sound effects, and atmospheric audio compositions."
         ],
-        selected: "Sound work featured in short-form projects including Twinies's short film Nothing Feels, Valentine's Day, the documentary reportage Dream–Run–Fly, and the animated project HAPOOGA. Created independent sound redesigns for Psych Rift and Transformers, alongside experimental sound compositions and foley-based scenes. Experienced in sound editing, sound effects design, and audio post-production.",
+        selected: "Sound work featured in short-form projects including Twinies's short film *Nothing Feels*, Valentine's Day, the documentary reportage *Dream–Run–Fly*, and the animated project *HAPOOGA*. Created independent sound redesigns for *Psych Rift* and *Transformers*, alongside experimental sound compositions and foley-based scenes. Experienced in sound editing, sound effects design, and audio post-production.",
         links: []
       },
       {
@@ -406,7 +406,7 @@ const CONTENT = {
           "Also known as OTTO01. Studied Music Production and Songwriting at Moscow Music School.",
           "Music producer and A&R specialist with experience in artist development, composition, arrangement, and creative direction. Collaborated with artists including RaNo, Natalia Alexandrova (Yunona), Zwatte, Kirilik, and Liz, Pliz across multiple musical genres."
         ],
-        selected: "Composer of original music for Twinies's short film Nothing Feels, including scene scores and end credits. Music producer and arranger at a production label, developing original compositions and collaborating with emerging artists. Specializes in Hip-Hop, Ambient, Lo-fi, Electronic, and Hardstyle music, with expertise in Ableton Live, FL Studio, and piano performance.",
+        selected: "Composer of original music for Twinies's short film *Nothing Feels*, including scene scores and end credits. Music producer and arranger at a production label, developing original compositions and collaborating with emerging artists. Specializes in Hip-Hop, Ambient, Lo-fi, Electronic, and Hardstyle music, with expertise in Ableton Live, FL Studio, and piano performance.",
         links: []
       },
       {

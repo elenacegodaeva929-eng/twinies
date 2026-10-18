@@ -640,3 +640,28 @@ footer{background:rgba(21,17,30,.84)}
   white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
 
 @media (max-width:560px){ .works{ columns:2 130px } .by-name{ font-size:11px } }
+
+/* =====================================================================
+   ПРАВКИ 6
+   Текст на главной читался плохо, когда прожектор светил прямо на него.
+   Делаем три вещи сразу: текст чуть плотнее и светлее, под ним мягкое
+   тёмное пятно без границ, и сам прожектор в этом месте приглушён.
+   ===================================================================== */
+
+#heroText{ position:relative; z-index:1 }
+#heroText::before{
+  content:"";
+  position:absolute; inset:-34px -8vw;
+  background:radial-gradient(ellipse 62% 70% at 50% 50%,
+    rgba(10,7,18,.82) 0%, rgba(10,7,18,.66) 42%,
+    rgba(10,7,18,.32) 72%, transparent 100%);
+  z-index:-1; pointer-events:none;
+}
+#heroText .lede{
+  color:#F2EEF8;
+  font-weight:500;
+  text-shadow:0 1px 3px rgba(8,5,14,.9), 0 0 14px rgba(8,5,14,.75);
+}
+@media (max-width:560px){
+  #heroText::before{ inset:-22px -6vw }
+}

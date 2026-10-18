@@ -15,6 +15,13 @@ function esc(s){
     return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];
   });
 }
+/* Названия фильмов и проектов по-английски пишут курсивом, а не в кавычках.
+   В content.js они обёрнуты звёздочками: *Nothing Feels*.
+   Здесь звёздочки превращаются в курсив — уже после экранирования,
+   поэтому вставить html через content.js нельзя, всё безопасно.        */
+function rich(s){
+  return esc(s).replace(/\*([^*\n]+)\*/g, "<em>$1</em>");
+}
 function pic(src, cls, alt, phText){
   return src
     ? '<img class="' + cls + '" src="' + esc(src) + '" alt="' + esc(alt || "") + '" loading="lazy">'
@@ -124,9 +131,9 @@ fGrid.addEventListener("click", function(e){
   fBox.innerHTML = '<div class="bio">' +
     '<div><h3>' + esc(f.name) + '</h3><div class="role">' + esc(f.title) + '</div></div>' +
     '<div><p class="eyebrow mb">Selected achievements</p>' +
-      '<ul class="ach">' + f.achievements.map(function(a){ return '<li>' + esc(a) + '</li>'; }).join("") + '</ul></div>' +
-    '<div><p class="eyebrow mb">About me</p><p class="about">' + esc(f.about) + '</p></div>' +
-    '<blockquote>' + esc(f.quote) + '<cite>' + esc(f.cite) + '</cite></blockquote>' +
+      '<ul class="ach">' + f.achievements.map(function(a){ return '<li>' + rich(a) + '</li>'; }).join("") + '</ul></div>' +
+    '<div><p class="eyebrow mb">About me</p><p class="about">' + rich(f.about) + '</p></div>' +
+    '<blockquote>' + rich(f.quote) + '<cite>' + esc(f.cite) + '</cite></blockquote>' +
     '<div><button class="btn" type="button" data-go="create">Create art</button></div>' +
     '<button class="closer" type="button">Close</button></div>';
   fBox.scrollIntoView({behavior:"smooth", block:"nearest"});
@@ -185,10 +192,10 @@ function renderDivision(id){
     }).join(" ");
     var paras = Array.isArray(p.bio) ? p.bio : (p.bio ? [p.bio] : []);
     var bioHtml = paras.length
-      ? paras.map(function(t){ return '<p class="pc-bio">' + esc(t) + '</p>'; }).join("")
+      ? paras.map(function(t){ return '<p class="pc-bio">' + rich(t) + '</p>'; }).join("")
       : '<p class="pc-bio pc-empty">Bio goes here.</p>';
     var selHtml = p.selected
-      ? '<div><p class="eyebrow mb">Selected work</p><p class="pc-bio">' + esc(p.selected) + '</p></div>'
+      ? '<div><p class="eyebrow mb">Selected work</p><p class="pc-bio">' + rich(p.selected) + '</p></div>'
       : "";
 
     card.innerHTML = '<div class="person-card">' +
@@ -246,7 +253,7 @@ if(C.films.length === 1) filmGrid.classList.add("single");
 filmGrid.innerHTML = C.films.map(function(f, i){
   var meta = esc(f.kind) + (f.year ? ' · ' + esc(f.year) : "");
   var teaser = C.films.length === 1
-    ? '<p class="teaser">' + esc(f.desc) + '</p><span class="watch">Open →</span>'
+    ? '<p class="teaser">' + rich(f.desc) + '</p><span class="watch">Open →</span>'
     : "";
   return '<button class="film" data-film="' + i + '">' +
     pic(f.poster, "poster", f.title, "poster") +
@@ -263,7 +270,7 @@ filmGrid.addEventListener("click", function(e){
     : '<div class="slot reel">trailer coming soon</div>';
   openModal('<div class="modal">' + reel + '<div class="body">' +
     '<span class="kind">' + esc(f.kind) + (f.year ? ' · ' + esc(f.year) : "") + '</span>' +
-    '<h3>' + esc(f.title) + '</h3><p>' + esc(f.desc) + '</p></div></div>', f.title);
+    '<h3>' + esc(f.title) + '</h3><p>' + rich(f.desc) + '</p></div></div>', f.title);
 });
 
 /* ---------------------------- лента работ ----------------------------
