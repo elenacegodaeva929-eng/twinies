@@ -318,7 +318,7 @@ const CONTENT = {
           "Studied Fashion and Costume Design at the Moscow Art and Industry Institute (2023).",
           "Event Manager at HRT.AIFF (2025–2026), specializing in visual concepts, creative direction, and event production."
         ],
-        selected: "Creator of the *Y2K Cyber Graduate Collection* and the *Mugler x SASHA MOLNIN* collection concept. Designed visual materials for *Rise Day & Night* and developed the *Creative Art Space* interior concept. Experienced in graphic design, fashion illustration, costume design, styling, and visual identity development.",
+        selected: "Creator of the *Y2K Cyber — Graduate Collection* and *Mugler x SASHA MOLNIN — Collection Concept*. Designed visual materials for *Rise Day & Night* and developed the *Creative Art Space — Interior Concept*. Experienced in graphic design, fashion illustration, costume design, styling, and visual identity development.",
         links: []
       },
       {
@@ -384,7 +384,7 @@ const CONTENT = {
           "Studying Sound Engineering of Audiovisual Arts at the GITR Film and Television School. Graduated from music school and is a proficient guitarist.",
           "Specializes in sound design and audio post-production for short films, animation, and audiovisual projects. Experienced in creating immersive soundscapes, sound effects, and atmospheric audio compositions."
         ],
-        selected: "Sound work featured in short-form projects including Twinies's short film *Nothing Feels*, Valentine's Day, the documentary reportage *Dream–Run–Fly*, and the animated project *HAPOOGA*. Created independent sound redesigns for *Psych Rift* and *Transformers*, alongside experimental sound compositions and foley-based scenes. Experienced in sound editing, sound effects design, and audio post-production.",
+        selected: "Sound work featured in short-form projects including Twinies's short film *Nothing Feels*, *Valentine's Day*, the documentary reportage *Dream–Run–Fly*, and the animated project *HAPOOGA*. Created independent sound redesigns for *Psych Rift* and *Transformers*, alongside experimental sound compositions and foley-based scenes. Experienced in sound editing, sound effects design, and audio post-production.",
         links: []
       },
       {

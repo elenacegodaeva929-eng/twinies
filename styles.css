@@ -644,24 +644,31 @@ footer{background:rgba(21,17,30,.84)}
 /* =====================================================================
    ПРАВКИ 6
    Текст на главной читался плохо, когда прожектор светил прямо на него.
-   Делаем три вещи сразу: текст чуть плотнее и светлее, под ним мягкое
-   тёмное пятно без границ, и сам прожектор в этом месте приглушён.
+   Под текстом — мягкое размытое затемнение: пятно нарисовано с запасом
+   внутри блока и размыто фильтром, поэтому у него нет ни краёв, ни углов,
+   это именно дымка, а не прямоугольник. Плюс сам шрифт чуть плотнее.
    ===================================================================== */
 
 #heroText{ position:relative; z-index:1 }
 #heroText::before{
   content:"";
-  position:absolute; inset:-34px -8vw;
-  background:radial-gradient(ellipse 62% 70% at 50% 50%,
-    rgba(10,7,18,.82) 0%, rgba(10,7,18,.66) 42%,
-    rgba(10,7,18,.32) 72%, transparent 100%);
-  z-index:-1; pointer-events:none;
+  position:absolute;
+  /* большой запас со всех сторон: размытию нужно куда расходиться */
+  inset:-90px -90px;
+  background:radial-gradient(ellipse 34% 38% at 50% 50%,
+    rgba(9,6,16,.88) 0%,
+    rgba(9,6,16,.72) 45%,
+    rgba(9,6,16,.34) 74%,
+    rgba(9,6,16,0) 100%);
+  filter:blur(44px);
+  z-index:-1;
+  pointer-events:none;
 }
 #heroText .lede{
   color:#F2EEF8;
   font-weight:500;
-  text-shadow:0 1px 3px rgba(8,5,14,.9), 0 0 14px rgba(8,5,14,.75);
+  text-shadow:0 1px 3px rgba(8,5,14,.92), 0 0 16px rgba(8,5,14,.8);
 }
 @media (max-width:560px){
-  #heroText::before{ inset:-22px -6vw }
+  #heroText::before{ inset:-60px -40px; filter:blur(30px) }
 }
