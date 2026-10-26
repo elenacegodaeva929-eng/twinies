@@ -175,18 +175,14 @@ function renderDivision(id){
         '<span class="nm">' + esc(p.name) + '</span>' +
         '<span class="rl">' + esc(p.role || "\u2014") + '</span></button>';
     }).join("") + '</div>' +
-    '<div id="personCard"></div>' +
     '<button class="closer" type="button" data-close-div>Close division</button></div>';
 
   var grid = dPanel.querySelector(".people");
   grid.addEventListener("click", function(e){
     var b = e.target.closest("[data-p]"); if(!b) return;
     var p = people[+b.dataset.p];
-    var was = b.getAttribute("aria-pressed") === "true";
-    grid.querySelectorAll(".person").forEach(function(x){ x.setAttribute("aria-pressed", "false"); });
-    var card = $("personCard");
-    if(was){ card.innerHTML = ""; return; }
-    b.setAttribute("aria-pressed", "true");
+    lastFocus = b;
+
     var links = (p.links || []).map(function(l){
       return '<a class="chip" href="' + esc(l[1]) + '" target="_blank" rel="noopener">' + esc(l[0]) + '</a>';
     }).join(" ");
@@ -198,14 +194,16 @@ function renderDivision(id){
       ? '<div><p class="eyebrow mb">Selected work</p><p class="pc-bio">' + rich(p.selected) + '</p></div>'
       : "";
 
-    card.innerHTML = '<div class="person-card">' +
+    /* карточка сотрудника открывается всплывающим окном поверх страницы,
+       а не внизу списка — иначе на телефоне её просто не видно */
+    openModal('<div class="person-card">' +
       pic(p.photo, "photo", p.name) +
       '<div class="pc-body">' +
         '<div><h4>' + esc(p.name) + '</h4>' +
         '<div class="pc-role">' + (p.role ? esc(p.role) + ' \u00b7 ' : "") + esc(d.name) + '</div></div>' +
         bioHtml + selHtml +
         (links ? '<div class="chips">' + links + '</div>' : "") +
-      '</div></div>';
+      '</div></div>', p.name, "person-modal");
   });
 
   dPanel.querySelector("[data-close-div]").addEventListener("click", function(){

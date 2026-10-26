@@ -174,7 +174,7 @@ const CONTENT = {
       {
         name: "Ilya Voroshilov",
         role: "Director, Cinematographer & Producer",
-        photo: "",
+        photo: "photo-05.jpg",
         bio: [
           "Postgraduate student in Fiction and Documentary Film Directing at the Gerasimov Institute of Cinematography (VGIK).",
           "Recipient of a film production grant from the Institute for Internet Development (IRI), 2023. Founder and producer of Komnata, a podcast production studio."
@@ -196,7 +196,7 @@ const CONTENT = {
       {
         name: "Ruslan Buchugasov",
         role: "Cinematographer, Director, Editor & Colorist",
-        photo: "",
+        photo: "photo-12.jpg",
         bio: [
           "Also known as BCHGSV. Studied Screenwriting and Dramaturgy at the New York Film Academy.",
           "Director, cinematographer, and editor for BIOMACHINE, Yan Toples, and Mark Miller. Editing Director for OKRASHENO."
@@ -207,7 +207,7 @@ const CONTENT = {
       {
         name: "Kirill Smirnov",
         role: "Director & Producer",
-        photo: "",
+        photo: "photo-07.jpg",
         bio: [
           "Postgraduate student in Fiction Film Directing at the Gerasimov Institute of Cinematography (VGIK)."
         ],
@@ -217,7 +217,7 @@ const CONTENT = {
       {
         name: "Vladimir Prudnikov",
         role: "Visual Artist, Editor, Cinematographer & Videographer",
-        photo: "photo-b.jpg",
+        photo: "photo-15.jpg",
         bio: [
           "Also known as immoimmoimmo / HikkaWarrior.",
           "Cinematographer and editor at Thunderbike Production, specializing in commercial videography, branded content, and visual storytelling."
@@ -230,7 +230,7 @@ const CONTENT = {
       {
         name: "Maria Garkavaya",
         role: "Graphic Designer, Visual Artist, Animator & Brand Identity Designer",
-        photo: "",
+        photo: "photo-09.jpg",
         bio: [
           "Vocational diploma from GBPOU OML (2024). Studied at bzik Creative Platform (2026). Nearly three years of professional experience in brand identity, print and packaging design, digital media, and web development.",
           "Graphic Designer at TSQ Consulting, TV and Radio Company Baltic Coast, a production agency, and Budyonny Military Academy Printing House. Independent freelance designer since 2025."
@@ -251,7 +251,7 @@ const CONTENT = {
       {
         name: "Ilya Voroshilov",
         role: "AI Video Artist & Producer",
-        photo: "",
+        photo: "photo-05.jpg",
         bio: [],
         selected: "",
         links: []
@@ -259,7 +259,7 @@ const CONTENT = {
       {
         name: "Alisa Zarubina",
         role: "Graphic Designer, Photographer & Pitch Deck Designer",
-        photo: "",
+        photo: "photo-16.jpg",
         bio: [
           "Bachelor's degree in Fiction Film and Television Directing from Saint Petersburg State University of Film and Television (SPbGIKiT, 2026). Photographer and videographer since 2021. Photographer at Lensovet Palace of Culture and Rodeo Drive Water Park. Film Directing Instructor at LenDok Film Studio (2025–2026)."
         ],
@@ -269,7 +269,7 @@ const CONTENT = {
       {
         name: "Anastasia Belova",
         role: "Stylist, Makeup Artist & Art Director",
-        photo: "",
+        photo: "photo-02.jpg",
         bio: [
           "Diploma in Fashion Styling from Self Maid Styling School. Five years of experience in styling, makeup artistry, and art direction.",
           "Worked with Beograd Fashion Show, performance art project N.A.G, and Russian rapper Husky's fashion brand Papino Moloko."
@@ -280,7 +280,7 @@ const CONTENT = {
       {
         name: "Alena Kupris",
         role: "Product Designer, UX/UI Designer, Graphic Designer & Brand Identity Designer",
-        photo: "",
+        photo: "photo-01.jpg",
         bio: [
           "Diploma in Graphic Design from Petrovsky State College. Artwork exhibited at the Erarta Museum of Contemporary Art.",
           "Lead Designer at AVB Invest, managing a team of five designers and contributing to nine B2B projects. UX/UI Designer at Devim Team. Completed 30+ freelance projects."
@@ -291,7 +291,7 @@ const CONTENT = {
       {
         name: "Katya Yakimova",
         role: "Illustrator, Visual Artist, Graphic Designer & Character Designer",
-        photo: "",
+        photo: "photo-06.jpg",
         bio: [
           "Graduated from art school and studied Print Design at Saint Petersburg State University of Industrial Technologies and Design.",
           "Awarded a $6.5K grant for art school equipment through an original sculpture project. Recipient of 3 Grand Prix and 23 first-place awards at Art Ptitsa competitions."
@@ -302,7 +302,7 @@ const CONTENT = {
       {
         name: "Vladimir Prudnikov",
         role: "Visual Artist, Graphic Designer & Fashion Designer",
-        photo: "",
+        photo: "photo-15.jpg",
         bio: [
           "Also known as immoimmoimmo / HikkaWarrior. Multidisciplinary artist specializing in concept art, graffiti-inspired painting, digital illustration, hand-drawn lettering, graphic design, and experimental fashion.",
           "Founder of PAINTPUNK, an independent clothing and accessories line. Creates large-scale artworks, digital illustrations, custom typography, brand identities, and fashion merchandise."
@@ -313,7 +313,7 @@ const CONTENT = {
       {
         name: "Sasha Molnina",
         role: "Graphic Designer, Visual Artist, Animator, Fashion Designer",
-        photo: "",
+        photo: "photo-13.jpg",
         bio: [
           "Studied Fashion and Costume Design at the Moscow Art and Industry Institute (2023).",
           "Event Manager at HRT.AIFF (2025–2026), specializing in visual concepts, creative direction, and event production."
@@ -324,7 +324,7 @@ const CONTENT = {
       {
         name: "Maria Trushina",
         role: "Graphic Designer, Visual Artist",
-        photo: "",
+        photo: "photo-10.jpg",
         bio: [
           "Five years of professional experience in graphic design and visual arts."
         ],
@@ -336,7 +336,7 @@ const CONTENT = {
       {
         name: "Kseniia Klever",
         role: "Director, Producer, Screenwriter & U.S. Film Festival Coordinator",
-        photo: "",
+        photo: "photo-a.jpg",
         bio: [
           "Studied Fiction and Documentary Film Directing at the Gerasimov Institute of Cinematography (VGIK) on a full state scholarship.",
           "Founder & Head of Film Studio at Twinies. Oversees creative development, leads writing teams, evaluates and edits screenplays, supervises film production, and manages U.S. and international film festival strategy and submissions."
@@ -347,7 +347,7 @@ const CONTENT = {
       {
         name: "Alisa Sakson",
         role: "Producer, Screenwriter & U.S. Film Festival Coordinator",
-        photo: "",
+        photo: "photo-c.jpg",
         bio: [
           "Coursework toward a Bachelor's in Screenwriting, Dramaturgy, and Film Studies at Bennington, USA, on a full merit scholarship.",
           "Co-Founder & Head of Film Studio at Twinies. Oversees script development, leads creative meetings with writing teams, edits and evaluates screenplays, and manages U.S. and international film festival strategy and submissions."
@@ -358,7 +358,7 @@ const CONTENT = {
       {
         name: "Mikhelina Modebadze",
         role: "",
-        photo: "",
+        photo: "photo-11.jpg",
         bio: [],
         selected: "",
         links: []
@@ -368,7 +368,7 @@ const CONTENT = {
       {
         name: "Konstantin Kutsyn",
         role: "Musician, Composer, Sound Designer & Music Producer",
-        photo: "",
+        photo: "photo-08.jpg",
         bio: [
           "Also known as electrobolero. Studied Musicology at Humboldt University of Berlin and Cultural Studies at the Russian State University for the Humanities (RSUH). Trained in classical piano and electronic music production.",
           "Composer and sound designer for films, theatrical productions, contemporary dance, art installations, and commercial projects. Performed at major music and arts festivals and venues, including Outline, ARMA/Mutabor, Sun Spirit, and Archstoyanie."
@@ -379,7 +379,7 @@ const CONTENT = {
       {
         name: "Anton Safronov",
         role: "Sound Designer, Sound Editor & Audio Post-Production Specialist",
-        photo: "",
+        photo: "photo-03.jpg",
         bio: [
           "Studying Sound Engineering of Audiovisual Arts at the GITR Film and Television School. Graduated from music school and is a proficient guitarist.",
           "Specializes in sound design and audio post-production for short films, animation, and audiovisual projects. Experienced in creating immersive soundscapes, sound effects, and atmospheric audio compositions."
@@ -390,7 +390,7 @@ const CONTENT = {
       {
         name: "Ruslan Buchugasov",
         role: "Sound Effects Editor, Video Editor & Post-Production Specialist",
-        photo: "",
+        photo: "photo-12.jpg",
         bio: [
           "Also known as BCGSV. Studied Screenwriting and Dramaturgy at the New York Film Academy.",
           "Specializes in cinematic editing, sound effects integration, and audiovisual storytelling. Worked on documentary and digital productions for BIOMACHINE, Yan Toples, Mark Miller, and OKRASHENO."
@@ -401,7 +401,7 @@ const CONTENT = {
       {
         name: "Egor Gavrikov",
         role: "A&R Manager, Music Producer, Composer & Arranger",
-        photo: "",
+        photo: "photo-04.jpg",
         bio: [
           "Also known as OTTO01. Studied Music Production and Songwriting at Moscow Music School.",
           "Music producer and A&R specialist with experience in artist development, composition, arrangement, and creative direction. Collaborated with artists including RaNo, Natalia Alexandrova (Yunona), Zwatte, Kirilik, and Liz, Pliz across multiple musical genres."
@@ -412,7 +412,7 @@ const CONTENT = {
       {
         name: "Sonya Anokhina",
         role: "",
-        photo: "",
+        photo: "photo-14.jpg",
         bio: [],
         selected: "",
         links: []

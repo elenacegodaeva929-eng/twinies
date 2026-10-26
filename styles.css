@@ -672,3 +672,42 @@ footer{background:rgba(21,17,30,.84)}
 @media (max-width:560px){
   #heroText::before{ inset:-60px -40px; filter:blur(30px) }
 }
+
+/* =====================================================================
+   ПРАВКИ 7
+   Карточка сотрудника открывается всплывающим окном поверх страницы.
+   Раньше она подставлялась под список, и на телефоне её не было видно —
+   список длинный, карточка уезжала за нижний край экрана.
+   ===================================================================== */
+
+/* окно не центрируем жёстко: у длинных биографий иначе срезает верх */
+.scrim.person-modal{ align-content:start; padding:68px 16px 40px }
+
+.scrim.person-modal .person-card{
+  width:min(760px,100%);
+  margin:0 auto;
+  background:var(--ink-2);
+  border:1px solid var(--lilac);
+  border-radius:16px;
+  padding:clamp(20px,3vw,30px);
+  grid-template-columns:150px minmax(0,1fr);
+  gap:24px;
+}
+.scrim.person-modal .person-card .photo{
+  border-radius:10px;
+  position:sticky; top:0;        /* фото держится рядом с длинным текстом */
+}
+.scrim.person-modal .pc-bio{ max-width:none }
+
+@media (max-width:620px){
+  .scrim.person-modal{ padding:60px 12px 28px }
+  .scrim.person-modal .person-card{
+    grid-template-columns:1fr;
+    gap:16px;
+    padding:18px;
+  }
+  .scrim.person-modal .person-card .photo{
+    position:static;
+    width:112px; height:112px; border-radius:50%;
+  }
+}
