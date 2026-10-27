@@ -711,3 +711,6 @@ footer{background:rgba(21,17,30,.84)}
     width:112px; height:112px; border-radius:50%;
   }
 }
+
+/* ловушка для спам-ботов: человек это поле не видит и не наводит на него фокус */
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none}

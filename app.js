@@ -311,6 +311,12 @@ $("workGrid").addEventListener("click", function(e){
 $("createIntro").innerHTML = C.createIntro.map(function(p){ return '<p>' + esc(p) + '</p>'; }).join("");
 $("joinIntro").innerHTML   = C.joinIntro.map(function(p){ return '<p>' + esc(p) + '</p>'; }).join("");
 
+function noteText(){
+  return C.web3formsKey
+    ? "We read everything and answer from " + C.email + " within three working days."
+    : "Your mail app opens with the letter ready for " + C.email + ".";
+}
+
 function linkForm(url){
   return '<div class="form">' +
     '<div><a class="btn" href="' + esc(url) + '" target="_blank" rel="noopener">Open the form</a></div>' +
@@ -324,8 +330,9 @@ $("createBody").innerHTML = C.createForm ? linkForm(C.createForm) :
   '<div class="field"><label for="c3">Timeline *</label><input id="c3" required placeholder="Start date, deadline, premiere"></div>' +
   '<div class="field"><label for="c4">Anything else</label><textarea id="c4" placeholder="Links, decks, restrictions"></textarea></div>' +
   '<div class="field"><label for="c5">Contact *</label><input id="c5" required placeholder="Email or @telegram"></div>' +
+  '<label class="hp" aria-hidden="true"><input type="checkbox" id="cBot" tabindex="-1" autocomplete="off">Leave this empty</label>' +
   '<div><button class="btn" type="submit">Send the brief</button></div>' +
-  '<p class="note">Your mail app opens with the brief ready for ' + esc(C.email) + '.</p></form>' +
+  '<p class="note">' + esc(noteText()) + '</p></form>' +
   '<div id="okCreate"></div>';
 
 $("joinBody").innerHTML = C.joinForm ? linkForm(C.joinForm) :
@@ -340,8 +347,9 @@ $("joinBody").innerHTML = C.joinForm ? linkForm(C.joinForm) :
   '<div class="field"><label for="j3">Experience, CV or portfolio *</label><textarea id="j3" required placeholder="Links to your work — that matters most"></textarea></div>' +
   '<div class="field"><label for="j4">Anything else</label><textarea id="j4" placeholder="What you want to make with us"></textarea></div>' +
   '<div class="field"><label for="j5">Contact *</label><input id="j5" required placeholder="Email or @telegram"></div>' +
+  '<label class="hp" aria-hidden="true"><input type="checkbox" id="jBot" tabindex="-1" autocomplete="off">Leave this empty</label>' +
   '<div><button class="btn" type="submit">Send</button></div>' +
-  '<p class="note">Your mail app opens with the letter ready for ' + esc(C.email) + '.</p></form>' +
+  '<p class="note">' + esc(noteText()) + '</p></form>' +
   '<div id="okJoin"></div>';
 
 function mailto(subject, lines){
@@ -350,34 +358,90 @@ function mailto(subject, lines){
     "&body=" + encodeURIComponent(lines.join("\n"));
 }
 
+/* ------------------------- отправка заявки -------------------------
+   Если в content.js вписан web3formsKey, форма уходит на сервер
+   Web3Forms и письмо приходит на почту студии. Пока ключа нет —
+   работает запасной вариант: открывается почтовая программа.      */
+
+function sendForm(opts){
+  var box = $(opts.okBox);
+  var btn = opts.form.querySelector('button[type="submit"]');
+
+  function done(title, text){
+    box.innerHTML = '<div class="ok"><strong>' + esc(title) + '</strong><p>' + esc(text) + '</p></div>';
+    box.scrollIntoView({behavior:"smooth", block:"nearest"});
+  }
+
+  /* запасной вариант без ключа */
+  if(!C.web3formsKey){
+    mailto(opts.subject, opts.fields.map(function(f){ return f[0] + ": " + f[1]; }));
+    done("Almost there.",
+      "Your mail app should open with the letter ready. If it did not, write to " + C.email + " directly.");
+    return;
+  }
+
+  var body = { access_key: C.web3formsKey, subject: opts.subject, from_name: "Twinies website" };
+  opts.fields.forEach(function(f){ body[f[0]] = f[1]; });
+  if(opts.botcheck) return;   /* ловушка для ботов: люди это поле не видят */
+
+  btn.disabled = true;
+  var label = btn.textContent;
+  btn.textContent = "Sending\u2026";
+
+  fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "Accept": "application/json" },
+    body: JSON.stringify(body)
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(res){
+    if(res.success){
+      opts.form.reset();
+      opts.form.style.display = "none";
+      done("Got it.", "We read everything and answer from " + C.email + " within three working days.");
+    } else {
+      throw new Error(res.message || "error");
+    }
+  })
+  .catch(function(){
+    btn.disabled = false; btn.textContent = label;
+    done("Something went wrong.",
+      "The form did not go through. Please write to " + C.email + " directly \u2014 we will answer either way.");
+  });
+}
+
+function val(id){ var el = $(id); return el ? el.value.trim() : ""; }
+
 var fc = $("formCreate");
 if(fc) fc.addEventListener("submit", function(e){
   e.preventDefault();
-  mailto("Twinies — create art", [
-    "Main request: " + $("c1").value,
-    "Budget: " + $("c2").value,
-    "Timeline: " + $("c3").value,
-    "Anything else: " + $("c4").value,
-    "Contact: " + $("c5").value
-  ]);
-  $("okCreate").innerHTML = '<div class="ok"><strong>Almost there.</strong>' +
-    '<p>Your mail app should open with the brief ready. If it did not, write to ' +
-    esc(C.email) + ' directly.</p></div>';
+  sendForm({
+    form: fc, okBox: "okCreate", subject: "Twinies \u2014 create art",
+    botcheck: $("cBot") && $("cBot").checked,
+    fields: [
+      ["Main request", val("c1")],
+      ["Budget", val("c2")],
+      ["Timeline", val("c3")],
+      ["Anything else", val("c4")],
+      ["Contact", val("c5")]
+    ]
+  });
 });
 
 var fj = $("formJoin");
 if(fj) fj.addEventListener("submit", function(e){
   e.preventDefault();
-  mailto("Twinies — join us", [
-    "Division: " + $("j1").value,
-    "Education: " + $("j2").value,
-    "Experience / portfolio: " + $("j3").value,
-    "Anything else: " + $("j4").value,
-    "Contact: " + $("j5").value
-  ]);
-  $("okJoin").innerHTML = '<div class="ok"><strong>Almost there.</strong>' +
-    '<p>Your mail app should open with the letter ready. If it did not, write to ' +
-    esc(C.email) + ' directly.</p></div>';
+  sendForm({
+    form: fj, okBox: "okJoin", subject: "Twinies \u2014 join us",
+    botcheck: $("jBot") && $("jBot").checked,
+    fields: [
+      ["Division", val("j1")],
+      ["Education", val("j2")],
+      ["Experience / portfolio", val("j3")],
+      ["Anything else", val("j4")],
+      ["Contact", val("j5")]
+    ]
+  });
 });
 
 })();
