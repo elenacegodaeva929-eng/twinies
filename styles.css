@@ -714,3 +714,13 @@ footer{background:rgba(21,17,30,.84)}
 
 /* ловушка для спам-ботов: человек это поле не видит и не наводит на него фокус */
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none}
+
+/* почта в подвале на телефоне не влезала в строку и ломалась пополам */
+@media (max-width:560px){
+  .mail{
+    font-size:clamp(16px,4.6vw,22px);
+    word-break:normal;
+    overflow-wrap:break-word;
+    letter-spacing:-.01em;
+  }
+}

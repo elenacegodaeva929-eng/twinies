@@ -216,9 +216,9 @@ const CONTENT = {
         role: "Director & Producer",
         photo: "photo-07.jpg",
         bio: [
-          "Postgraduate student in Fiction Film Directing at the Gerasimov Institute of Cinematography (VGIK)."
+          "Postgraduate student at the Gerasimov Institute of Cinematography (VGIK), Department of Aesthetics."
         ],
-        selected: "Director of the documentary *A Silk Thread* and the short film *What Virginia Woolf Doesn't Say*. First Assistant Director of Twinies's short film *Nothing Feels*. Experienced in fiction and documentary directing, creative production, and visual storytelling.",
+        selected: "Director of the documentary *A Silk Thread*, the short films *What Virginia Woolf Doesn't Say* and *Kintsugi* (U.S. grant recipient). First Assistant Director of Twinies' short film *Nothing Feels*. Worked with film production companies Nebo and STV as a behind-the-scenes cinematographer; served as Second Assistant Director for the Lyudmila Kasatkina and Sergei Kolosov Foundation and as a multi-camera operator for ProBusiness TV. Experienced in fiction and documentary directing, assistant directing, cinematography, editing, creative production, English translation, and visual storytelling.",
         links: []
       },
       {
