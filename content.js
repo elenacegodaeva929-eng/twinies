@@ -248,7 +248,7 @@ const CONTENT = {
       {
         name: "Anna Alpatova",
         role: "AI Artist, Fashion Designer & Digital Creator",
-        photo: "",
+        photo: "photo-17.jpg",
         bio: [
           "Independent digital artist specializing in AI-generated fashion, visual concept development, digital illustration, and experimental design. Creates fashion collections, brand identities, and audiovisual content using generative AI technologies."
         ],
@@ -364,10 +364,13 @@ const CONTENT = {
       },
       {
         name: "Mikhelina Modebadze",
-        role: "",
+        role: "Producer, Communications Strategist, Mediator, Performance Art Theorist & EU Film Festival Coordinator",
         photo: "photo-11.jpg",
-        bio: [],
-        selected: "",
+        bio: [
+          "Studied Performing Arts Production at the Russian Academy of Music and Public Relations. Currently studying Philosophy at Bordeaux Montaigne University in France, specializing in aesthetics, critical theory, and identity.",
+          "Experienced in creative production, strategic communications, performance art, and independent exhibition curation. Organized art markets and exhibitions supporting underground artists in Moscow. Worked in music licensing, public relations, and nonprofit initiatives supporting vulnerable communities."
+        ],
+        selected: "Executive Producer of *Shkills*, which attracted $225K in financing and generated 9.2M promotional views. Producer and mediator of *Nothing Feels*, overseeing creative coordination, team communications, and European film festival submissions. Curated independent art exhibitions and coordinated experimental performance projects, including works facing censorship in Russia. Experienced in cultural programming, artist relations, creative mediation, and international festival strategy.",
         links: []
       }
     ],
