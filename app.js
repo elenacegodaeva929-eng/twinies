@@ -291,10 +291,16 @@ function credit(name){
 }
 
 $("workGrid").innerHTML = C.works.map(function(w, i){
+  var inner = w.img
+    ? '<img src="' + esc(w.img) + '" alt="' + esc(w.alt || "") + '" loading="lazy">'
+    : '<span class="work-ph">' + (w.video ? "video" : "work") + '</span>';
+  /* у видео поверх кадра — кнопка плей */
+  var play = w.video
+    ? '<span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>'
+    : "";
   return '<figure class="work-cell">' +
-    '<button class="work" data-work="' + i + '">' + (w.img
-      ? '<img src="' + esc(w.img) + '" alt="' + esc(w.alt || "") + '" loading="lazy">'
-      : '<span class="work-ph">work</span>') + '</button>' +
+    '<button class="work' + (w.video ? ' is-video' : '') + '" data-work="' + i + '"' +
+      (w.video ? ' aria-label="Play video"' : '') + '>' + inner + play + '</button>' +
     (w.by ? '<figcaption>' + credit(w.by) + '</figcaption>' : "") +
   '</figure>';
 }).join("");
@@ -302,8 +308,23 @@ $("workGrid").innerHTML = C.works.map(function(w, i){
 $("workGrid").addEventListener("click", function(e){
   var b = e.target.closest("[data-work]"); if(!b) return;
   var w = C.works[+b.dataset.work];
-  if(!w.img) return;
   lastFocus = b;
+
+  if(w.video){
+    var src = String(w.video);
+    /* ссылка на ютуб или вимео — окно с проигрывателем;
+       имя файла — встроенный плеер браузера                      */
+    var body = /^https?:/i.test(src)
+      ? '<iframe src="' + esc(src) + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="' + esc(w.by || "Work") + '"></iframe>'
+      : '<video src="' + esc(src) + '" controls autoplay playsinline' +
+        (w.img ? ' poster="' + esc(w.img) + '"' : '') + '></video>';
+    openModal('<div class="modal">' + body +
+      (w.by ? '<div class="body"><h3>' + esc(w.by) + '</h3></div>' : "") +
+      '</div>', w.by || w.alt || "Work");
+    return;
+  }
+
+  if(!w.img) return;
   openModal('<img src="' + esc(w.img) + '" alt="' + esc(w.alt || "") + '">', w.by || w.alt || "Work", "lightbox");
 });
 

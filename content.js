@@ -73,7 +73,7 @@ const CONTENT = {
       achievements: [
         "Produced, wrote, and directed 120+ projects, managing over $600K in production budgets.",
         "Brought 157 emerging artists into paid productions through Twinies, with 80+ now working in the film industry.",
-        "Won twelve international film and screenwriting festivals.",
+        "Won seventeen international film and screenwriting festivals.",
         "Led a 124-person cast and crew on an original series backed by $225K in financing.",
         "Curated 160+ cultural events attended by 50,000+ people."
       ],
@@ -90,7 +90,7 @@ const CONTENT = {
       achievements: [
         "Wrote, produced, and directed 30+ projects, managing over $200K in production budgets.",
         "Developed original television series for NMG — Russia's largest media holding — and pitched projects to three major streaming platforms: Okko, Kion, and Premier.",
-        "Won sixteen international film and screenwriting festivals.",
+        "Won twenty two international film and screenwriting festivals.",
         "Secured a $52K national arts grant for an original theatrical production."
       ],
       about: "For six years, I fought to make it as a screenwriter in the Russian film industry, and encountered more than my share of horrors. My scripts were stolen, major production companies cheated me, and once I even came close to going to prison over something I'd written. I left Russia to study in America, hoping to finally find the creative freedom I'd been fighting for. I joined Twinies because I want everyone, everywhere, to have the freedom to create art on their own terms.",
@@ -348,7 +348,7 @@ const CONTENT = {
           "Studied Fiction and Documentary Film Directing at the Gerasimov Institute of Cinematography (VGIK) on a full state scholarship.",
           "Founder & Head of Film Studio at Twinies. Oversees creative development, leads writing teams, evaluates and edits screenplays, supervises film production, and manages U.S. and international film festival strategy and submissions."
         ],
-        selected: "Creator, director, and producer of *Nothing Feels*. Creator and showrunner of *Shkills*, which attracted $225K in financing and generated 9.2M promotional views. Screenwriter and script editor for national television networks NTV and TV3. Winner and finalist at twelve international film and screenwriting festivals. Experienced in directing, creative producing, screenplay development, script editing, and international festival distribution.",
+        selected: "Creator, director, and producer of *Nothing Feels*. Creator and showrunner of *Shkills*, which attracted $225K in financing and generated 9.2M promotional views. Screenwriter and script editor for national television networks NTV and TV3. Winner and finalist at seventeen international film and screenwriting festivals. Experienced in directing, creative producing, screenplay development, script editing, and international festival distribution.",
         links: []
       },
       {
@@ -359,7 +359,7 @@ const CONTENT = {
           "Coursework toward a Bachelor's in Screenwriting, Dramaturgy, and Film Studies at Bennington, USA, on a full merit scholarship.",
           "Co-Founder & Head of Film Studio at Twinies. Oversees script development, leads creative meetings with writing teams, edits and evaluates screenplays, and manages U.S. and international film festival strategy and submissions."
         ],
-        selected: "Screenwriter and producer of *Nothing Feels*. Head Writer of *Infanta* for National Media Group, Russia's largest media holding. Creator of *Vaksa*, pitched to Okko, Kion, and Premier ($85K offers). Secured a $52K grant from Russia's Presidential Fund for Cultural Initiatives for an original theatrical production. Winner and finalist at sixteen international film and screenwriting festivals. Experienced in creative producing, screenplay development, script editing, and international festival distribution.",
+        selected: "Screenwriter and producer of *Nothing Feels*. Head Writer of *Infanta* for National Media Group, Russia's largest media holding. Creator of *Vaksa*, pitched to Okko, Kion, and Premier ($85K offers). Secured a $52K grant from Russia's Presidential Fund for Cultural Initiatives for an original theatrical production. Winner and finalist at twenty two international film and screenwriting festivals. Experienced in creative producing, screenplay development, script editing, and international festival distribution.",
         links: []
       },
       {
@@ -420,11 +420,13 @@ const CONTENT = {
         links: []
       },
       {
-        name: "Sonya Anokhina",
-        role: "",
+        name: "Sonia Anokhina",
+        role: "Sound Designer & Musician",
         photo: "photo-14.jpg",
-        bio: [],
-        selected: "",
+        bio: [
+          "Sound designer at the Teresa Durova Theater in Moscow, with five years of professional experience in sound design and a decade-long background in acting. Specializes in theatrical sound production, live performance sound operation, and creating immersive sonic environments. Also produces original music under the artist name *smorzhopilo*."
+        ],
+        selected: "Sound designer for theatrical productions including *Dubrovsky*, *Three Lotuses*, *Far in the East*, *The Malachite Box*, *Yesenin*, and *Nekrasov*, among others. Responsible for real-time sound operation across the theater's repertoire, coordinating audio cues and sound effects during live performances. Sound designer for Twinies's award-winning psychological horror short *Nothing Feels*. Experienced in theatrical and cinematic sound design, live audio production, music composition, and sound-driven storytelling.",
         links: []
       }
     ]
@@ -443,10 +445,10 @@ const CONTENT = {
     {
       title: "nothing feels",
       year: "2026",
-      kind: "Feature film",
+      kind: "Short film",
       poster: "film-nothing-feels.jpg",
-      trailer: "",
-      desc: "Kseniia Klever, Anna Alpatova, Alisa Sakson. Описание фильма впишите сюда — два-три абзаца, не больше."
+      trailer: "https://www.youtube.com/embed/wz855hl3i14",
+      desc: "A psychological body horror about neurodivergent masking. Wearing another's skin and mimicking human emotions, a faceless being tries to become someone worthy of love. But the more convincing its mask, the less of it remains underneath."
     }
   ],
 
@@ -455,23 +457,34 @@ const CONTENT = {
      Лучшие работы команды — единственное место, где показываются
      проекты. У каждой работы подписан автор.
 
-     img — имя файла картинки, лежит в корне репозитория
-     by  — имя автора ТОЧНО так, как оно написано в блоке team выше.
-           Тогда рядом сама подтянется его фотография-кружок.
-           Если имя не совпадёт — подпись останется, кружка не будет.
-     alt — короткое описание для поисковиков, можно оставить пустым
+     img   — КАДР, который видно в ленте. Имя файла в репозитории.
+             Для видео это обложка: тот самый красивый кадр.
+     video — если работа это видео, сюда ссылка или имя файла.
+             На кадре появится кнопка плей, по клику видео откроется в окне.
+             Видео не ставится — остаётся просто картинка.
+               YouTube  https://www.youtube.com/embed/КОД
+               Vimeo    https://player.vimeo.com/video/НОМЕР
+               файл     work-zaitsev-01.mp4  (только для коротких роликов)
+     by    — имя автора ТОЧНО так, как оно написано в блоке team выше.
+             Тогда рядом сама подтянется его фотография-кружок.
+             Если имя не совпадёт — подпись останется, кружка не будет.
+     alt   — короткое описание для поисковиков, можно оставить пустым
 
+     Порядок строк здесь = порядок в ленте на сайте.
      Добавлять можно сколько угодно — лента сама разложится.        */
 
   works: [
-    { img: "", by: "Katya Yakimova",    alt: "" },
-    { img: "", by: "Ilya Voroshilov",   alt: "" },
-    { img: "", by: "Maria Trushina",    alt: "" },
-    { img: "", by: "Sergey Sutyagin",   alt: "" },
-    { img: "", by: "Vladimir Prudnikov",alt: "" },
-    { img: "", by: "Anton Safronov",    alt: "" },
-    { img: "", by: "Alisa Zarubina",    alt: "" },
-    { img: "", by: "Timofey Novoselov", alt: "" }
+    { img: "", video: "", by: "Vladislav Zaitsev",  alt: "" },
+    { img: "", video: "", by: "Ruslan Buchugasov",  alt: "" },
+    { img: "", video: "", by: "Katya Yakimova",     alt: "" },
+    { img: "", video: "", by: "Ilya Voroshilov",    alt: "" },
+    { img: "", video: "", by: "Maria Trushina",     alt: "" },
+    { img: "", video: "", by: "Sergey Sutyagin",    alt: "" },
+    { img: "", video: "", by: "Vladimir Prudnikov", alt: "" },
+    { img: "", video: "", by: "Anton Safronov",     alt: "" },
+    { img: "", video: "", by: "Alisa Zarubina",     alt: "" },
+    { img: "", video: "", by: "Timofey Novoselov",  alt: "" },
+    { img: "", video: "", by: "Vladislav Zaitsev",  alt: "" }
   ],
 
 
