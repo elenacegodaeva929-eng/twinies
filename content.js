@@ -55,7 +55,7 @@ const CONTENT = {
 
   intro: [
     "Twinies is a clown production studio bringing artists from around the world together to create independent art in all its forms. Our mission is to make art accessible to everyone, regardless of their background, status, or experience.",
-    "At Twinies, we're all twins. No two of us are alike, but we share a love for creating and a taste for the unconventional. Our twinies are always ready to jump into projects of any scale or complexity. Everyone on our team has the freedom to explore their own interests and grow in whatever direction they choose — and that's what makes each twinie unique.",
+    "At Twinies, we're all twins. No two of us are alike, but we share a love for creating and a taste for the unconventional. Our twinies are always ready to jump into projects of any scale or complexity. Everyone on our team has the freedom to explore their own interests and grow in whatever direction they choose, and that's what makes each twinie unique.",
     "We bring the people, skills, and ideas that other projects need to come to life, while making plenty of our own. Rebellion against the system, creative freedom, unconventional thinking, and staying true to ourselves — that's what Twinies is all about."
   ],
 
@@ -475,17 +475,17 @@ const CONTENT = {
      Добавлять можно сколько угодно — лента сама разложится.        */
 
   works: [
-    { img: "", video: "https://youtu.be/F4cJTTIgJbQ", by: "Vladislav Zaitsev",  alt: "" },
-    { img: "", video: "https://youtu.be/ffl-7AJhKB0", by: "Ruslan Buchugasov",  alt: "" },
-    { img: "", video: "https://youtu.be/5nWQZE0bFTo", by: "Timofey Novoselov",  alt: "" },
-    { img: "", video: "https://youtu.be/5deoQlukJDg", by: "Sergey Sutyagin",    alt: "" },
+    { img: "work-zaitsev-01.jpg",    video: "https://youtu.be/F4cJTTIgJbQ", by: "Vladislav Zaitsev",  alt: "" },
+    { img: "work-buchugasov-01.jpg", video: "https://youtu.be/ffl-7AJhKB0", by: "Ruslan Buchugasov",  alt: "" },
+    { img: "work-novoselov-01.jpg",  video: "https://youtu.be/5nWQZE0bFTo", by: "Timofey Novoselov",  alt: "" },
+    { img: "work-sutyagin-01.jpg",   video: "https://youtu.be/5deoQlukJDg", by: "Sergey Sutyagin",    alt: "" },
     { img: "", video: "", by: "Katya Yakimova",     alt: "" },
     { img: "", video: "", by: "Ilya Voroshilov",    alt: "" },
     { img: "", video: "", by: "Maria Trushina",     alt: "" },
     { img: "", video: "", by: "Vladimir Prudnikov", alt: "" },
     { img: "", video: "", by: "Anton Safronov",     alt: "" },
-    { img: "", video: "", by: "Alisa Zarubina",     alt: "" },
-    { img: "", video: "https://youtu.be/hFWyrPspgww", by: "Vladislav Zaitsev",  alt: "" }
+    { img: "work-zarubina-01.jpg", video: "", by: "Alisa Zarubina", alt: "Poster for the short film The Rat" },
+    { img: "work-zaitsev-02.jpg",    video: "https://youtu.be/hFWyrPspgww", by: "Vladislav Zaitsev",  alt: "" }
   ],
 
 
