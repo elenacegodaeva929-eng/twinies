@@ -348,6 +348,18 @@ $("workGrid").addEventListener("error", function(e){
   img.replaceWith(ph);
 }, true);
 
+/* кружок автора: если фото ещё не залито, показываем градиентную
+   заглушку вместо сломанной картинки                              */
+document.addEventListener("error", function(e){
+  var img = e.target;
+  if(img.tagName === "IMG" && img.classList.contains("by-av")){
+    var ph = document.createElement("span");
+    ph.className = "by-av by-av-ph";
+    ph.setAttribute("aria-hidden", "true");
+    img.replaceWith(ph);
+  }
+}, true);
+
 $("workGrid").addEventListener("click", function(e){
   var b = e.target.closest("[data-work]"); if(!b) return;
   var w = C.works[+b.dataset.work];
