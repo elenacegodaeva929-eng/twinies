@@ -748,3 +748,9 @@ footer{background:rgba(21,17,30,.84)}
 
 /* окно с видео */
 .modal video{display:block;width:100%;aspect-ratio:16/9;background:#000;border:0}
+
+/* заглушка вместо не загрузившейся обложки держит высоту ячейки.
+   У видео кадр всегда широкий, у картинок пропорции остаются разными. */
+.work.is-video .work-ph{aspect-ratio:16/9}
+.work-cell:nth-child(3n) .work.is-video .work-ph,
+.work-cell:nth-child(4n) .work.is-video .work-ph{aspect-ratio:16/9}

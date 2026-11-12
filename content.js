@@ -458,12 +458,13 @@ const CONTENT = {
      проекты. У каждой работы подписан автор.
 
      img   — КАДР, который видно в ленте. Имя файла в репозитории.
-             Для видео это обложка: тот самый красивый кадр.
+             Для видео с ютуба можно оставить пустым: обложка
+             подтянется с ютуба сама. Хотите свой кадр — впишите файл.
      video — если работа это видео, сюда ссылка или имя файла.
              На кадре появится кнопка плей, по клику видео откроется в окне.
              Видео не ставится — остаётся просто картинка.
-               YouTube  https://www.youtube.com/embed/КОД
-               Vimeo    https://player.vimeo.com/video/НОМЕР
+               YouTube  обычная ссылка, как копируется из браузера
+               Vimeo    обычная ссылка
                файл     work-zaitsev-01.mp4  (только для коротких роликов)
      by    — имя автора ТОЧНО так, как оно написано в блоке team выше.
              Тогда рядом сама подтянется его фотография-кружок.
@@ -474,17 +475,17 @@ const CONTENT = {
      Добавлять можно сколько угодно — лента сама разложится.        */
 
   works: [
-    { img: "", video: "", by: "Vladislav Zaitsev",  alt: "" },
-    { img: "", video: "", by: "Ruslan Buchugasov",  alt: "" },
+    { img: "", video: "https://youtu.be/F4cJTTIgJbQ", by: "Vladislav Zaitsev",  alt: "" },
+    { img: "", video: "https://youtu.be/ffl-7AJhKB0", by: "Ruslan Buchugasov",  alt: "" },
+    { img: "", video: "https://youtu.be/5nWQZE0bFTo", by: "Timofey Novoselov",  alt: "" },
+    { img: "", video: "https://youtu.be/5deoQlukJDg", by: "Sergey Sutyagin",    alt: "" },
     { img: "", video: "", by: "Katya Yakimova",     alt: "" },
     { img: "", video: "", by: "Ilya Voroshilov",    alt: "" },
     { img: "", video: "", by: "Maria Trushina",     alt: "" },
-    { img: "", video: "", by: "Sergey Sutyagin",    alt: "" },
     { img: "", video: "", by: "Vladimir Prudnikov", alt: "" },
     { img: "", video: "", by: "Anton Safronov",     alt: "" },
     { img: "", video: "", by: "Alisa Zarubina",     alt: "" },
-    { img: "", video: "", by: "Timofey Novoselov",  alt: "" },
-    { img: "", video: "", by: "Vladislav Zaitsev",  alt: "" }
+    { img: "", video: "https://youtu.be/hFWyrPspgww", by: "Vladislav Zaitsev",  alt: "" }
   ],
 
 

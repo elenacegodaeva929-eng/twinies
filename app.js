@@ -264,12 +264,36 @@ filmGrid.addEventListener("click", function(e){
   lastFocus = b;
   var f = C.films[+b.dataset.film];
   var reel = f.trailer
-    ? '<iframe src="' + esc(f.trailer) + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="' + esc(f.title) + '"></iframe>'
+    ? '<iframe src="' + esc(videoEmbed(f.trailer)) + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="' + esc(f.title) + '"></iframe>'
     : '<div class="slot reel">trailer coming soon</div>';
   openModal('<div class="modal">' + reel + '<div class="body">' +
     '<span class="kind">' + esc(f.kind) + (f.year ? ' · ' + esc(f.year) : "") + '</span>' +
     '<h3>' + esc(f.title) + '</h3><p>' + rich(f.desc) + '</p></div></div>', f.title);
 });
+
+/* ---------------------- видео: ссылки и обложки ----------------------
+   Ссылку с ютуба можно вставлять в любом виде — youtu.be/КОД,
+   youtube.com/watch?v=КОД или готовый embed. Здесь она приводится
+   к виду, который умеет встраиваться, а обложка берётся с ютуба
+   автоматически, если своя картинка не задана.                     */
+
+function ytId(u){
+  var m = String(u || "").match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|shorts\/|watch\?(?:.*&)?v=))([A-Za-z0-9_-]{11})/);
+  return m ? m[1] : "";
+}
+function vimeoId(u){
+  var m = String(u || "").match(/vimeo\.com\/(?:video\/)?(\d+)/);
+  return m ? m[1] : "";
+}
+function videoEmbed(u){
+  var y = ytId(u);    if(y) return "https://www.youtube.com/embed/" + y;
+  var v = vimeoId(u); if(v) return "https://player.vimeo.com/video/" + v;
+  return String(u || "");
+}
+function videoPoster(u){
+  var y = ytId(u);
+  return y ? "https://img.youtube.com/vi/" + y + "/maxresdefault.jpg" : "";
+}
 
 /* ---------------------------- лента работ ----------------------------
    У каждой работы подписан автор. Имя из поля by ищется среди
@@ -291,8 +315,11 @@ function credit(name){
 }
 
 $("workGrid").innerHTML = C.works.map(function(w, i){
-  var inner = w.img
-    ? '<img src="' + esc(w.img) + '" alt="' + esc(w.alt || "") + '" loading="lazy">'
+  /* обложка: своя картинка, иначе кадр с ютуба */
+  var poster = w.img || videoPoster(w.video);
+  var inner = poster
+    ? '<img src="' + esc(poster) + '" alt="' + esc(w.alt || "") + '" loading="lazy"' +
+      (w.img ? '' : ' data-yt="1"') + '>'
     : '<span class="work-ph">' + (w.video ? "video" : "work") + '</span>';
   /* у видео поверх кадра — кнопка плей */
   var play = w.video
@@ -305,6 +332,22 @@ $("workGrid").innerHTML = C.works.map(function(w, i){
   '</figure>';
 }).join("");
 
+/* Обложка не загрузилась: сначала пробуем обычную картинку ютуба
+   вместо большой, а если и она не пришла — показываем заглушку,
+   иначе ячейка схлопнется в ноль и лента поедет.                  */
+$("workGrid").addEventListener("error", function(e){
+  var img = e.target;
+  if(img.tagName !== "IMG" || !img.closest(".work")) return;
+  if(img.dataset.yt && img.src.indexOf("maxresdefault") > -1){
+    img.src = img.src.replace("maxresdefault", "hqdefault");
+    return;
+  }
+  var ph = document.createElement("span");
+  ph.className = "work-ph";
+  ph.textContent = img.closest(".work").classList.contains("is-video") ? "video" : "work";
+  img.replaceWith(ph);
+}, true);
+
 $("workGrid").addEventListener("click", function(e){
   var b = e.target.closest("[data-work]"); if(!b) return;
   var w = C.works[+b.dataset.work];
@@ -315,9 +358,9 @@ $("workGrid").addEventListener("click", function(e){
     /* ссылка на ютуб или вимео — окно с проигрывателем;
        имя файла — встроенный плеер браузера                      */
     var body = /^https?:/i.test(src)
-      ? '<iframe src="' + esc(src) + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="' + esc(w.by || "Work") + '"></iframe>'
+      ? '<iframe src="' + esc(videoEmbed(src)) + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="' + esc(w.by || "Work") + '"></iframe>'
       : '<video src="' + esc(src) + '" controls autoplay playsinline' +
-        (w.img ? ' poster="' + esc(w.img) + '"' : '') + '></video>';
+        (poster ? ' poster="' + esc(poster) + '"' : '') + '></video>';
     openModal('<div class="modal">' + body +
       (w.by ? '<div class="body"><h3>' + esc(w.by) + '</h3></div>' : "") +
       '</div>', w.by || w.alt || "Work");
