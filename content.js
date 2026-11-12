@@ -159,7 +159,7 @@ const CONTENT = {
       {
         name: "Vladislav Zaitsev",
         role: "Editor, Director & Cinematographer",
-        photo: "",
+        photo: "photo-18.jpg",
         bio: [
           "Postgraduate student in Documentary Film Directing at the Gerasimov Institute of Cinematography (VGIK).",
           "Nominee for Best Debut at the Lavr National Documentary Film Awards. His work has been featured at international documentary film festivals, including Artdocfest, Flahertiana, SiberiaDOC, the International Festival of Ethnological Film in Belgrade, Toronto International Short Film Awards, and Novaya Gazeta's Documentary Film Festival."
@@ -170,7 +170,7 @@ const CONTENT = {
       {
         name: "Timofey Novoselov",
         role: "Cinematographer & Director of Photography",
-        photo: "",
+        photo: "photo-19.jpg",
         bio: [
           "Bachelor's degree in Cinematography from the GITR Film and Television School. Seven years of experience in cinematography.",
           "Cinematographer at Pygmalion Pictures (Russia-K TV channel), Divi Television Company, and Dronov Production."
@@ -192,7 +192,7 @@ const CONTENT = {
       {
         name: "Sergey Sutyagin",
         role: "Director, Screenwriter, Digital Designer & Production Designer",
-        photo: "",
+        photo: "photo-20.jpg",
         bio: [
           "Postgraduate student in Fiction Film Directing at the Gerasimov Institute of Cinematography (VGIK).",
           "Director of six short films, with work screened at Russian and international film festivals. Actor at the Pyotr Fomenko Workshop Theatre in Moscow. Collaborates with CINEVENT PRODUCTION as a director of music videos and commissioned productions."
