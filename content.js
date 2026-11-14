@@ -477,13 +477,13 @@ const CONTENT = {
   works: [
     { img: "work-zaitsev-01.jpg",    video: "https://youtu.be/F4cJTTIgJbQ", by: "Vladislav Zaitsev",  alt: "" },
     { img: "work-sutyagin-01.jpg",   video: "https://youtu.be/ffl-7AJhKB0", by: "Ruslan Buchugasov",  alt: "" },
-    { img: "work-usharkov-01.jpg", video: "", by: "", alt: "Album cover artwork" },
+    { img: "work-usharkov-01.jpg", video: "", by: "Vladimir Prudnikov", alt: "Album cover artwork" },
     { img: "work-buchugasov-01.jpg", video: "https://youtu.be/hFWyrPspgww", by: "Vladislav Zaitsev",  alt: "" },
     { img: "work-zarubina-01.jpg", video: "", by: "Alisa Zarubina", alt: "Poster for the short film The Rat" },
     { img: "work-voroshilov-02.jpg", video: "https://youtu.be/lzkDhwf7QgQ", by: "Ilya Voroshilov", alt: "" },
     { img: "work-voroshilov-01.jpg", video: "https://youtu.be/Tqxbqgx1b4Y", by: "Ilya Voroshilov", alt: "" },
     { img: "work-zaitsev-02.jpg",    video: "https://youtu.be/5nWQZE0bFTo", by: "Timofey Novoselov",  alt: "" },
-    { img: "work-dune-01.jpg",     video: "", by: "", alt: "Poster concept for Jodorowsky's Dune" },
+    { img: "work-dune-01.jpg",     video: "", by: "Maria Garkavaya",    alt: "Poster concept for Jodorowsky's Dune" },
     { img: "work-novoselov-01.jpg",  video: "https://youtu.be/5deoQlukJDg", by: "Sergey Sutyagin",    alt: "" }
   ],
 
