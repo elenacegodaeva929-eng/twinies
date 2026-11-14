@@ -332,6 +332,154 @@ $("workGrid").innerHTML = C.works.map(function(w, i){
   '</figure>';
 }).join("");
 
+/* ------------------- раскладка ленты работ -------------------
+   Колонки раскладываем сами, а не стандартным свойством columns:
+   браузеры (особенно Safari) при карточках разной высоты оставляли
+   последнюю колонку пустой. Здесь высота каждой карточки известна
+   заранее — из пропорций картинки, — поэтому их можно разложить
+   поровну и проследить, чтобы два проекта одного автора не попали
+   в одну колонку.                                                */
+
+var WORK_CELLS = [].slice.call($("workGrid").querySelectorAll(".work-cell"));
+WORK_CELLS.forEach(function(cell, i){
+  cell.dataset.by = (C.works[i] && C.works[i].by) || "";
+});
+
+/* пропорции карточки: пока картинка не загрузилась — 16:9 у видео */
+function cellRatio(cell){
+  var img = cell.querySelector("img");
+  if(img && img.naturalWidth && img.naturalHeight) return img.naturalWidth / img.naturalHeight;
+  var btn = cell.querySelector(".work");
+  return (btn && btn.classList.contains("is-video")) ? 16 / 9 : 1;
+}
+
+/* сколько колонок помещается */
+function colCount(width){
+  return Math.max(2, Math.min(4, Math.floor(width / 230)));
+}
+
+/* в колонке не должно быть двух работ одного автора */
+function colTakes(list, by){
+  if(!by) return true;
+  for(var i = 0; i < list.length; i++) if(list[i].by === by) return false;
+  return true;
+}
+
+function colHeight(list, gap){
+  var h = 0;
+  for(var i = 0; i < list.length; i++) h += list[i].h;
+  return h + gap * Math.max(0, list.length - 1);
+}
+
+function spread(cols, gap){
+  var hi = -Infinity, lo = Infinity;
+  for(var i = 0; i < cols.length; i++){
+    var h = colHeight(cols[i], gap);
+    if(h > hi) hi = h;
+    if(h < lo) lo = h;
+  }
+  return hi - lo;
+}
+
+function layoutWorks(){
+  var grid = $("workGrid");
+  if(!grid || !WORK_CELLS.length) return;
+
+  var gap = parseFloat(getComputedStyle(grid).columnGap) || 16;
+  var total = grid.clientWidth;
+  if(!total) return;
+
+  var n = Math.min(colCount(total), WORK_CELLS.length);
+  var colW = (total - gap * (n - 1)) / n;
+
+  var items = WORK_CELLS.map(function(cell, i){
+    return {
+      i: i,
+      el: cell,
+      by: cell.dataset.by,
+      h: colW / cellRatio(cell) + (cell.querySelector("figcaption") ? 32 : 0)
+    };
+  });
+
+  /* сначала раскладываем крупные карточки, потом мелкие —
+     так колонки выравниваются гораздо лучше                 */
+  var cols = [], k;
+  for(k = 0; k < n; k++) cols.push([]);
+
+  items.slice().sort(function(a, b){ return b.h - a.h; }).forEach(function(it){
+    var best = -1, bestH = Infinity, fallback = -1, fallbackH = Infinity;
+    for(var c = 0; c < n; c++){
+      var h = colHeight(cols[c], gap);
+      if(h < fallbackH){ fallbackH = h; fallback = c; }
+      if(colTakes(cols[c], it.by) && h < bestH){ bestH = h; best = c; }
+    }
+    cols[best > -1 ? best : fallback].push(it);
+  });
+
+  /* подгонка: переносим и меняем карточки местами, пока разница
+     между самой высокой и самой низкой колонкой уменьшается      */
+  for(var pass = 0; pass < 40; pass++){
+    var now = spread(cols, gap), moved = false, a, b, x, y;
+
+    for(a = 0; a < n && !moved; a++){
+      for(x = 0; x < cols[a].length && !moved; x++){
+        for(b = 0; b < n && !moved; b++){
+          if(b === a || !colTakes(cols[b], cols[a][x].by)) continue;
+          var it = cols[a].splice(x, 1)[0];
+          cols[b].push(it);
+          if(spread(cols, gap) < now){ moved = true; break; }
+          cols[b].pop();
+          cols[a].splice(x, 0, it);
+        }
+      }
+    }
+
+    for(a = 0; a < n && !moved; a++){
+      for(b = a + 1; b < n && !moved; b++){
+        for(x = 0; x < cols[a].length && !moved; x++){
+          for(y = 0; y < cols[b].length && !moved; y++){
+            var p = cols[a][x], q = cols[b][y];
+            if(p.by && p.by === q.by) continue;
+            cols[a][x] = q; cols[b][y] = p;
+            if(colTakes(cols[a].filter(function(_, j){ return j !== x; }), q.by) &&
+               colTakes(cols[b].filter(function(_, j){ return j !== y; }), p.by) &&
+               spread(cols, gap) < now){ moved = true; break; }
+            cols[a][x] = p; cols[b][y] = q;
+          }
+        }
+      }
+    }
+
+    if(!moved) break;
+  }
+
+  /* внутри колонки — в том же порядке, что и в content.js */
+  var boxes = cols.map(function(list){
+    var box = document.createElement("div");
+    box.className = "works-col";
+    list.sort(function(a, b){ return a.i - b.i; })
+        .forEach(function(it){ box.appendChild(it.el); });
+    return box;
+  });
+
+  while(grid.firstChild) grid.removeChild(grid.firstChild);
+  boxes.forEach(function(box){ grid.appendChild(box); });
+}
+
+var workTimer = null;
+function relayoutWorks(){
+  clearTimeout(workTimer);
+  workTimer = setTimeout(layoutWorks, 60);
+}
+
+layoutWorks();
+window.addEventListener("resize", relayoutWorks);
+/* картинка загрузилась — её настоящие пропорции известны, пересчитываем */
+$("workGrid").addEventListener("load", function(e){
+  if(e.target.tagName === "IMG" && e.target.closest(".work")) relayoutWorks();
+}, true);
+window.addEventListener("load", relayoutWorks);
+
 /* Обложка не загрузилась: сначала пробуем обычную картинку ютуба
    вместо большой, а если и она не пришла — показываем заглушку,
    иначе ячейка схлопнется в ноль и лента поедет.                  */
@@ -346,6 +494,7 @@ $("workGrid").addEventListener("error", function(e){
   ph.className = "work-ph";
   ph.textContent = img.closest(".work").classList.contains("is-video") ? "video" : "work";
   img.replaceWith(ph);
+  relayoutWorks();
 }, true);
 
 /* кружок автора: если фото ещё не залито, показываем градиентную
@@ -363,6 +512,7 @@ document.addEventListener("error", function(e){
 $("workGrid").addEventListener("click", function(e){
   var b = e.target.closest("[data-work]"); if(!b) return;
   var w = C.works[+b.dataset.work];
+  var poster = w.img || videoPoster(w.video);
   lastFocus = b;
 
   if(w.video){
