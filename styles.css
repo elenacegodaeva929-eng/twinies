@@ -754,3 +754,33 @@ footer{background:rgba(21,17,30,.84)}
 .work.is-video .work-ph{aspect-ratio:16/9}
 .work-cell:nth-child(3n) .work.is-video .work-ph,
 .work-cell:nth-child(4n) .work.is-video .work-ph{aspect-ratio:16/9}
+
+/* =====================================================================
+   ПРАВКИ 8
+   Лента работ раскладывается скриптом, а не свойством columns.
+   Стандартная раскладка в колонки сама решает, сколько колонок занять,
+   и при карточках разной высоты оставляла последнюю пустой — в Safari
+   особенно заметно. Теперь колонки — обычные блоки, а что в какую
+   попадёт, считает app.js: поровну по высоте и без двух работ одного
+   автора в одной колонке.
+   ===================================================================== */
+
+.works{
+  columns:auto;
+  display:flex;
+  align-items:flex-start;
+  gap:clamp(14px,1.8vw,20px);
+}
+.works-col{
+  flex:1 1 0;
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  gap:clamp(14px,1.8vw,20px);
+}
+.works-col .work-cell{ margin:0; width:100% }
+
+@media (max-width:560px){
+  .works{ gap:10px }
+  .works-col{ gap:10px }
+}
