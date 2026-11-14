@@ -371,14 +371,49 @@ function colHeight(list, gap){
   return h + gap * Math.max(0, list.length - 1);
 }
 
-function spread(cols, gap){
-  var hi = -Infinity, lo = Infinity;
-  for(var i = 0; i < cols.length; i++){
-    var h = colHeight(cols[i], gap);
+/* на какой высоте окажется каждая карточка колонки */
+function colSpans(list, gap){
+  var out = [], y = 0, i;
+  var sorted = list.slice().sort(function(a, b){ return a.i - b.i; });
+  for(i = 0; i < sorted.length; i++){
+    out.push({ by: sorted[i].by, top: y, bottom: y + sorted[i].h });
+    y += sorted[i].h + gap;
+  }
+  return out;
+}
+
+/* Качество раскладки. Сначала смотрим, не оказались ли две работы
+   одного автора бок о бок — то есть на одной высоте в соседних
+   колонках. Потом уже ровняем низ колонок.                       */
+function cost(cols, gap){
+  var hi = -Infinity, lo = Infinity, spans = [], c, d, i, j;
+
+  for(c = 0; c < cols.length; c++){
+    var s = colSpans(cols[c], gap);
+    var h = s.length ? s[s.length - 1].bottom : 0;
     if(h > hi) hi = h;
     if(h < lo) lo = h;
+    spans.push(s);
   }
-  return hi - lo;
+
+  var clash = 0;
+  for(c = 0; c < spans.length; c++){
+    for(d = c + 1; d < spans.length; d++){
+      for(i = 0; i < spans[c].length; i++){
+        for(j = 0; j < spans[d].length; j++){
+          var a = spans[c][i], b = spans[d][j];
+          if(a.by && a.by === b.by && a.top < b.bottom && b.top < a.bottom) clash++;
+        }
+      }
+    }
+  }
+  return { clash: clash, spread: hi - lo };
+}
+
+/* первая раскладка лучше второй? */
+function better(a, b){
+  if(a.clash !== b.clash) return a.clash < b.clash;
+  return a.spread < b.spread;
 }
 
 function layoutWorks(){
@@ -406,6 +441,11 @@ function layoutWorks(){
   var cols = [], k;
   for(k = 0; k < n; k++) cols.push([]);
 
+  /* первая работа из content.js всегда открывает ленту:
+     левая колонка, самый верх — её мы потом не двигаем    */
+  var first = items.shift();
+  if(first){ first.lock = true; cols[0].push(first); }
+
   items.slice().sort(function(a, b){ return b.h - a.h; }).forEach(function(it){
     var best = -1, bestH = Infinity, fallback = -1, fallbackH = Infinity;
     for(var c = 0; c < n; c++){
@@ -418,16 +458,17 @@ function layoutWorks(){
 
   /* подгонка: переносим и меняем карточки местами, пока разница
      между самой высокой и самой низкой колонкой уменьшается      */
-  for(var pass = 0; pass < 40; pass++){
-    var now = spread(cols, gap), moved = false, a, b, x, y;
+  for(var pass = 0; pass < 25; pass++){
+    var now = cost(cols, gap), moved = false, a, b, x, y;
 
     for(a = 0; a < n && !moved; a++){
       for(x = 0; x < cols[a].length && !moved; x++){
+        if(cols[a][x].lock) continue;
         for(b = 0; b < n && !moved; b++){
           if(b === a || !colTakes(cols[b], cols[a][x].by)) continue;
           var it = cols[a].splice(x, 1)[0];
           cols[b].push(it);
-          if(spread(cols, gap) < now){ moved = true; break; }
+          if(better(cost(cols, gap), now)){ moved = true; break; }
           cols[b].pop();
           cols[a].splice(x, 0, it);
         }
@@ -439,11 +480,12 @@ function layoutWorks(){
         for(x = 0; x < cols[a].length && !moved; x++){
           for(y = 0; y < cols[b].length && !moved; y++){
             var p = cols[a][x], q = cols[b][y];
+            if(p.lock || q.lock) continue;
             if(p.by && p.by === q.by) continue;
             cols[a][x] = q; cols[b][y] = p;
             if(colTakes(cols[a].filter(function(_, j){ return j !== x; }), q.by) &&
                colTakes(cols[b].filter(function(_, j){ return j !== y; }), p.by) &&
-               spread(cols, gap) < now){ moved = true; break; }
+               better(cost(cols, gap), now)){ moved = true; break; }
             cols[a][x] = p; cols[b][y] = q;
           }
         }
