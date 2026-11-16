@@ -485,7 +485,7 @@ const CONTENT = {
       roles: ["Illustrator"], alt: "Album cover artwork" },
 
     { img: "work-alpatova-01.jpg",   video: "", by: "Anna Alpatova",
-      roles: [], alt: "Product photography for a lip gloss campaign" },
+      roles: ["AI Visual Artist"], alt: "Product photography for a lip gloss campaign" },
 
     { img: "work-buchugasov-01.jpg", video: "https://youtu.be/hFWyrPspgww", by: "Vladislav Zaitsev",
       roles: ["Director", "Cinematographer", "Editor"], alt: "" },
