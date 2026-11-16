@@ -305,13 +305,19 @@ Object.keys(C.team || {}).forEach(function(k){
 });
 (C.founders || []).forEach(function(p){ if(p.name && !PEOPLE[p.name]) PEOPLE[p.name] = p; });
 
-function credit(name){
+function credit(name, roles){
   if(!name) return "";
   var p = PEOPLE[name];
   var av = (p && p.photo)
     ? '<img class="by-av" src="' + esc(p.photo) + '" alt="" loading="lazy">'
     : '<span class="by-av by-av-ph" aria-hidden="true"></span>';
-  return '<span class="by">' + av + '<span class="by-name">' + esc(name) + '</span></span>';
+  /* что человек делал именно на этом проекте — каждая строка отдельно */
+  var job = (roles || []).map(function(r){
+    return '<span class="by-role">' + esc(r) + '</span>';
+  }).join("");
+  return '<span class="by">' + av +
+    '<span class="by-text"><span class="by-name">' + esc(name) + '</span>' + job + '</span>' +
+  '</span>';
 }
 
 $("workGrid").innerHTML = C.works.map(function(w, i){
@@ -328,7 +334,7 @@ $("workGrid").innerHTML = C.works.map(function(w, i){
   return '<figure class="work-cell">' +
     '<button class="work' + (w.video ? ' is-video' : '') + '" data-work="' + i + '"' +
       (w.video ? ' aria-label="Play video"' : '') + '>' + inner + play + '</button>' +
-    (w.by ? '<figcaption>' + credit(w.by) + '</figcaption>' : "") +
+    (w.by ? '<figcaption>' + credit(w.by, w.roles) + '</figcaption>' : "") +
   '</figure>';
 }).join("");
 
@@ -428,12 +434,12 @@ function layoutWorks(){
   var colW = (total - gap * (n - 1)) / n;
 
   var items = WORK_CELLS.map(function(cell, i){
-    return {
-      i: i,
-      el: cell,
-      by: cell.dataset.by,
-      h: colW / cellRatio(cell) + (cell.querySelector("figcaption") ? 32 : 0)
-    };
+    /* подпись у всех разной высоты — у кого-то три строки должностей,
+       у кого-то одна, — поэтому меряем её, а не берём на глаз         */
+    var cap = cell.querySelector("figcaption");
+    var capH = cap ? cap.getBoundingClientRect().height + 8 : 0;
+    if(cap && !capH) capH = 32;
+    return { i: i, el: cell, by: cell.dataset.by, h: colW / cellRatio(cell) + capH };
   });
 
   /* сначала раскладываем крупные карточки, потом мелкие —

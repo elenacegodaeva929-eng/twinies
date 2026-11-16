@@ -475,16 +475,41 @@ const CONTENT = {
      Добавлять можно сколько угодно — лента сама разложится.        */
 
   works: [
-    { img: "work-zaitsev-01.jpg",    video: "https://youtu.be/F4cJTTIgJbQ", by: "Vladislav Zaitsev",  alt: "" },
-    { img: "work-sutyagin-01.jpg",   video: "https://youtu.be/ffl-7AJhKB0", by: "Ruslan Buchugasov",  alt: "" },
-    { img: "work-usharkov-01.jpg", video: "", by: "Vladimir Prudnikov", alt: "Album cover artwork" },
-    { img: "work-buchugasov-01.jpg", video: "https://youtu.be/hFWyrPspgww", by: "Vladislav Zaitsev",  alt: "" },
-    { img: "work-zarubina-01.jpg", video: "", by: "Alisa Zarubina", alt: "Poster for the short film The Rat" },
-    { img: "work-voroshilov-02.jpg", video: "https://youtu.be/lzkDhwf7QgQ", by: "Ilya Voroshilov", alt: "" },
-    { img: "work-voroshilov-01.jpg", video: "https://youtu.be/Tqxbqgx1b4Y", by: "Ilya Voroshilov", alt: "" },
-    { img: "work-zaitsev-02.jpg",    video: "https://youtu.be/5nWQZE0bFTo", by: "Timofey Novoselov",  alt: "" },
-    { img: "work-dune-01.jpg",     video: "", by: "Maria Garkavaya",    alt: "Poster concept for Jodorowsky's Dune" },
-    { img: "work-novoselov-01.jpg",  video: "https://youtu.be/5deoQlukJDg", by: "Sergey Sutyagin",    alt: "" }
+    { img: "work-zaitsev-01.jpg",    video: "https://youtu.be/F4cJTTIgJbQ", by: "Vladislav Zaitsev",
+      roles: ["Director", "Cinematographer", "Editor"], alt: "" },
+
+    { img: "work-sutyagin-01.jpg",   video: "https://youtu.be/ffl-7AJhKB0", by: "Ruslan Buchugasov",
+      roles: ["Director", "Cinematographer", "Editor"], alt: "" },
+
+    { img: "work-usharkov-01.jpg",   video: "", by: "Vladimir Prudnikov",
+      roles: ["Illustrator"], alt: "Album cover artwork" },
+
+    { img: "work-alpatova-01.jpg",   video: "", by: "Anna Alpatova",
+      roles: [], alt: "Product photography for a lip gloss campaign" },
+
+    { img: "work-buchugasov-01.jpg", video: "https://youtu.be/hFWyrPspgww", by: "Vladislav Zaitsev",
+      roles: ["Director", "Cinematographer", "Editor"], alt: "" },
+
+    { img: "work-zarubina-01.jpg",   video: "", by: "Alisa Zarubina",
+      roles: ["Poster Designer"], alt: "Poster for the short film The Rat" },
+
+    { img: "work-safronov-01.jpg",   video: "", by: "Anton Safronov",
+      roles: ["Composer"], alt: "" },
+
+    { img: "work-voroshilov-02.jpg", video: "https://youtu.be/lzkDhwf7QgQ", by: "Ilya Voroshilov",
+      roles: ["Concept Creator", "Director", "AI Filmmaker"], alt: "" },
+
+    { img: "work-voroshilov-01.jpg", video: "https://youtu.be/Tqxbqgx1b4Y", by: "Ilya Voroshilov",
+      roles: ["Concept Creator", "Director", "AI Filmmaker"], alt: "" },
+
+    { img: "work-zaitsev-02.jpg",    video: "https://youtu.be/5nWQZE0bFTo", by: "Timofey Novoselov",
+      roles: ["Cinematographer (Showreel)"], alt: "" },
+
+    { img: "work-dune-01.jpg",       video: "", by: "Maria Garkavaya",
+      roles: ["Designer"], alt: "Poster concept for Jodorowsky\'s Dune" },
+
+    { img: "work-novoselov-01.jpg",  video: "https://youtu.be/5deoQlukJDg", by: "Sergey Sutyagin",
+      roles: ["Director (Showreel)"], alt: "" }
   ],
 
 
