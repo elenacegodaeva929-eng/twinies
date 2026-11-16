@@ -493,7 +493,7 @@ const CONTENT = {
     { img: "work-zarubina-01.jpg",   video: "", by: "Alisa Zarubina",
       roles: ["Poster Designer"], alt: "Poster for the short film The Rat" },
 
-    { img: "work-safronov-01.jpg",   video: "", by: "Anton Safronov",
+    { img: "work-safronov-01.jpg",   video: "https://youtu.be/s8R7BGO8lM0", by: "Anton Safronov",
       roles: ["Composer"], alt: "" },
 
     { img: "work-voroshilov-02.jpg", video: "https://youtu.be/lzkDhwf7QgQ", by: "Ilya Voroshilov",
