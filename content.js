@@ -303,7 +303,7 @@ const CONTENT = {
           "Graduated from art school and studied Print Design at Saint Petersburg State University of Industrial Technologies and Design.",
           "Awarded a $6.5K grant for art school equipment through an original sculpture project. Recipient of 3 Grand Prix and 23 first-place awards at Art Ptitsa competitions."
         ],
-        selected: "Illustrator of the forthcoming children's book *Hedgehog on the Fence* (40 illustrations), with artwork published in the Russian children's magazine *Chitayka*. Received an Honorable Mention at the international SAVE THE FROGS! Art Contest, with artwork published by the organizer. Designed the logo for Italian real estate company Lecito. Experienced in book illustration, character design, portraiture, and visual identity.",
+        selected: "Illustrator of the forthcoming children's book *Hedgehog on the Fence* (40 illustrations), with artwork published in the Russian children's magazine *Chitayka*. Received an Honorable Mention at the international SAVE THE FROGS! Art Contest, with artwork published by the organizer. Designed the logo for Brazilian real estate company Lecito. Experienced in book illustration, character design, portraiture, and visual identity.",
         links: []
       },
       {
